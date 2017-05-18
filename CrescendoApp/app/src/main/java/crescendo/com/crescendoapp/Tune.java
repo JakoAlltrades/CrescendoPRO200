@@ -7,11 +7,11 @@ import android.support.v7.app.AppCompatActivity;
  * Created by Brandon on 5/18/2017.
  */
 
-public class Sign_In  extends AppCompatActivity {
+public class Tune  extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.sign_in);
+        setContentView(R.layout.tune);
     }
 }
