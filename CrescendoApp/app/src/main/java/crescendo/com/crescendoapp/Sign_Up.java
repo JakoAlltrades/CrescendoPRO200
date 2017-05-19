@@ -1,7 +1,9 @@
 package crescendo.com.crescendoapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 
 /**
  * Created by Brandon on 5/18/2017.
@@ -13,5 +15,10 @@ public class Sign_Up  extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sign_up);
+    }
+    public void userHome(View view)
+    {
+        Intent myIntent = new Intent(Sign_Up.this, UserHome.class);
+        startActivity(myIntent);
     }
 }
