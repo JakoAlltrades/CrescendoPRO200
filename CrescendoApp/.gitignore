@@ -9,3 +9,4 @@
 .externalNativeBuild
 /.vs/config
 applicationhost.config
+/CrescendoWebsite/obj/
