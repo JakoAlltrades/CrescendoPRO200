@@ -1,6 +1,7 @@
 ﻿
 @{
-    Layout = null;
+    ViewBag.title = "Index";
+    Layout = "~/Views/Shared/_IndexLayout.cshtml";
 }
 
 <!DOCTYPE html>
@@ -13,8 +14,19 @@
 <body>
     <h1>Welcome to the our Website, you can log in here, or create a new account</h1>
 
-    <div> 
+
+    <div>
+        @Html.ActionLink("Returning User", "Login")
+    </div>
+    <div>
+        @Html.ActionLink("New User", "NewUser")
+    </div>
+
+    <section><p>Here's some info about our website/app</p></section>
+
+    <div>
 
     </div>
 </body>
 </html>
+
