@@ -1,4 +1,8 @@
 ﻿
+@using CrescendoWebsite.Models
+
+@model User
+
 <!DOCTYPE html>
 
 <html>
@@ -17,11 +21,15 @@
     @*These will likely need to become done with html.actionLink where you pass the user along with the link*@
     <nav>
         <ul>
-            <li><a href="~/Home/UserHome">Home</a></li>
+            <li>@Html.ActionLink("Home", "UserHome", Model)</li>
+            <li>@Html.ActionLink("Your Data", "UserData", Model)</li>
+            <li>@Html.ActionLink("Recordings", "Recordings", Model)</li>
+            
+            @*<li><a href="~/Home/UserHome">Home</a></li>
             <li><a href="~/Home/UserData">Your Data</a></li>
             <li><a href="~/Home/Recordings">Recordings</a></li>
             <li><a href="~/Home/Chords">Chords</a></li>
-            <li><a href="~/Home/Scales">Scales</a></li>
+            <li><a href="~/Home/Scales">Scales</a></li>*@
         </ul>
     </nav>
 

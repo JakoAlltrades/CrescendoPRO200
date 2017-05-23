@@ -41,24 +41,33 @@ namespace CrescendoWebsite.Controllers
             return vr;
         }
 
-        [HttpPost]
         public ActionResult UserHome(User u)
         {
-            ViewResult vr = View(u);
+            ViewResult vr = View("Index");
+            if (u != null)
+            {
+                vr = View(u);
+            }
             return vr;
         }
 
-        [HttpPost]
         public ActionResult UserData(User u)
         {
-            ViewResult vr = View(u);
+            ViewResult vr = View("Index");
+            if (u != null)
+            {
+                vr = View(u);
+            }
             return vr;
         }
 
-        [HttpPost]
         public ActionResult Recordings(User u) // this should take a list<Recording> instead? or maybe user just has a list of Recordings?
         {
-            ViewResult vr = View(u);
+            ViewResult vr = View("Index");
+            if (u != null)
+            {
+                vr = View(u);
+            }
             return vr;
         }
     }
