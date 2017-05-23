@@ -185,10 +185,7 @@
     </Compile>
     <Compile Include="Models\DBhandler.cs" />
     <Compile Include="Models\GuitarChord.cs" />
-<<<<<<< HEAD
-=======
     <Compile Include="Models\Recording.cs" />
->>>>>>> origin/master
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

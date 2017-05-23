@@ -1,0 +1,12 @@
+*.iml
+.gradle
+/CrescendoApp/local.properties
+/CrescendoApp/.idea/workspace.xml
+/CrescendoApp/.idea/libraries
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+/.vs/config
+applicationhost.config
+/CrescendoWebsite/obj/
