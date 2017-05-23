@@ -12,7 +12,7 @@ namespace CrescendoWebsite.Models
         public DBhandler()
         {
             IQClient client = QuickBase.Login("Jpriemo1234@gmail.com", "Crescendo1", "johnpriem.quickbase.com");
-            IQApplication application = client.Connect("bms24ys95");
+            IQApplication application = client.Connect("bms24ys95", "duzpt2fcvsybbgkrkup4bjurh8b");
             IQTable table =  application.GetTable("bms24ytdy");
 
             foreach(var record in table.Records)
