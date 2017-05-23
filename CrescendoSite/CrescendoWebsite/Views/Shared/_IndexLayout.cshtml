@@ -1,0 +1,23 @@
+﻿
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="~/Style/Main.css" />
+
+    <title>@ViewData["Title"]</title>
+</head>
+<body>
+    <header>
+        <h1><strong>Crescendo</strong></h1>
+        <h2>@ViewBag.Title</h2>
+    </header>
+
+    <div>
+        @RenderBody()
+    </div>
+
+    <footer>&copy; 2016 Priem, Coats, and Hollis</footer>
+</body>
+</html>

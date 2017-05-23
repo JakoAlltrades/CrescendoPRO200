@@ -1,0 +1,42 @@
+﻿
+@using CrescendoWebsite.Models
+
+@model User
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="~/Style/Main.css" />
+
+    <title>@ViewData["Title"]</title>
+</head>
+<body>
+    <header>
+        <h1><strong>Crescendo</strong></h1>
+        <h2>@ViewBag.Title</h2>
+    </header>
+
+    @*These will likely need to become done with html.actionLink where you pass the user along with the link*@
+    <nav>
+        <ul>
+            <li>@Html.ActionLink("Home", "UserHome", Model)</li>
+            <li>@Html.ActionLink("Your Data", "UserData", Model)</li>
+            <li>@Html.ActionLink("Recordings", "Recordings", Model)</li>
+            
+            @*<li><a href="~/Home/UserHome">Home</a></li>
+            <li><a href="~/Home/UserData">Your Data</a></li>
+            <li><a href="~/Home/Recordings">Recordings</a></li>
+            <li><a href="~/Home/Chords">Chords</a></li>
+            <li><a href="~/Home/Scales">Scales</a></li>*@
+        </ul>
+    </nav>
+
+    <div>
+        @RenderBody()
+    </div>
+
+    <footer>&copy; 2016 Priem, Coats, and Hollis</footer>
+</body>
+</html>

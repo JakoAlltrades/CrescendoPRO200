@@ -1,6 +1,11 @@
 ﻿
+
+@using CrescendoWebsite.Models
+@model User
+
 @{
-    Layout = null;
+    ViewBag.title = "Login";
+    Layout = "~/Views/Shared/_IndexLayout.cshtml";
 }
 
 <!DOCTYPE html>
@@ -8,11 +13,27 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
+
+    <script>document.getElementById("txtComment").value = "";</script>
     <title>Login</title>
 </head>
 <body>
-    <h1>This is the Login Page!</h1>
-    <div> 
+    <h1>Welcome Back! Please enter your User Name and Password below to get playing</h1>
+    <div>
     </div>
+
+    <div id="sign_in">
+        @using (Html.BeginForm("login", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+            <strong>UserName:</strong>  <a id="textcomment">@Html.TextBoxFor(x => x.UserName) </a><br />
+            <br />
+            <strong>Password:</strong>  <a id="textcomment">@Html.TextBoxFor(x => x.Password, new { Type = "password" })</a> <br />
+            <br />
+            <input type="submit">
+        }
+    </div>
+
+
+
 </body>
 </html>

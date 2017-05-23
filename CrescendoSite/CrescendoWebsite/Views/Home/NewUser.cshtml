@@ -1,6 +1,11 @@
 ﻿
+@using CrescendoWebsite.Models
+
+@model User
+
 @{
-    Layout = null;
+    ViewBag.title = "NewUser";
+    Layout = "~/Views/Shared/_IndexLayout.cshtml";
 }
 
 <!DOCTYPE html>
@@ -11,9 +16,23 @@
     <title>NewUser</title>
 </head>
 <body>
-    <h1>Enter your information here new User</h1>
+    <h1>Welcome to Crescendo. To sign up, follow the instructions below</h1>
 
-    <div> 
+    <div>
+        @using (Html.BeginForm("NewUser", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+            <div id="sign">
+
+            </div>
+            //here stuuffss
+            <strong>UserName:</strong>  <a id="textcomment">@Html.TextBoxFor(x => x.UserName) </a><br />
+            <br />
+                <strong>Password:</strong>  <a id="textcomment">@Html.TextBoxFor(x => x.Password, new { Type = "password" })</a> <br />
+                <br />
+                @*<strong>Re-Enter Password:</strong>  <a id="textcomment">@Html.TextBox("checkword", checkword, new { Type = "password" })</a> <br />
+                    <br />*@
+                <input type="submit">
+        }
     </div>
 </body>
 </html>
