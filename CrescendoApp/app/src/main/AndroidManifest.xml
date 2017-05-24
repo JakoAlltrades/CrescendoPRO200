@@ -19,7 +19,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".Sign_Up" android:label="@string/app_name" ></activity>
-        <activity android:name=".Sign_In" android:label="@string/app_name" ></activity>
         <activity android:name=".Chords" android:label="@string/app_name" ></activity>
         <activity android:name=".Metronome" android:label="@string/app_name" ></activity>
         <activity android:name=".Record" android:label="@string/app_name" ></activity>
