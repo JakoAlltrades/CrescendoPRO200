@@ -10,6 +10,12 @@ namespace CrescendoWebsite.Models
         int? UserID { get; set; } 
         public string UserName { get; set; }
         public string UserPassword { get; set; }
+        public User()
+        {
+            UserID = null;
+            UserName = null;
+            UserPassword = null;
+        }
 
         public User(string userName, string userPassword)
         {

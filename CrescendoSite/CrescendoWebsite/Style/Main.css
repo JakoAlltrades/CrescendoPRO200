@@ -1,0 +1,69 @@
+
+/*Colors
+
+    BF312D  -   
+    7F211E  -   
+    FF413B  -   
+    20100F  -   Background
+    E53B36  -   nav
+*/
+
+body{
+    /*background: radial-gradient(circle at 130% 100%, #ffffff, #091D26) fixed;*/
+    background: #30100F;
+    color: #ffffff;
+    margin-top: 5%;
+    margin-left: 10%;
+    margin-right: 15%;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    text-align: center;   
+}
+
+nav ul{
+    background-color:#E53B36;
+    box-shadow: 10px 10px 60px 0px rgba(0,0,0,0.75);
+    margin-bottom: 0px;
+}
+nav li{
+    float: left;
+      
+}
+nav li a{
+    display: block;
+    color: #FFFFFF;
+    text-align: center;
+    padding: 10px;
+    line-height: 50px;
+    text-decoration: none;
+    font-size: 20px;
+    /*float: center;*/
+    
+}
+nav li img{
+    width: 50px;
+    padding: 0 5px;
+}
+nav li a:hover{
+    background-color: #14455C;
+}
+footer{
+    width: 250px;
+    align-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    position: absolute;
+    padding: 10px 0px;
+    margin: 10px 0px;
+    bottom: 0;
+}
+
+#resizeText:focus{
+    font-size: 100px;
+}
+

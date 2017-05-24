@@ -15,7 +15,6 @@
 <body>
     <header>
         <h1><strong>Crescendo</strong></h1>
-        <h2>@ViewBag.Title</h2>
     </header>
 
     @*These will likely need to become done with html.actionLink where you pass the user along with the link*@
@@ -32,6 +31,8 @@
             <li><a href="~/Home/Scales">Scales</a></li>*@
         </ul>
     </nav>
+
+    <h2>@ViewBag.Title</h2>
 
     <div>
         @RenderBody()

@@ -24,8 +24,12 @@ namespace CrescendoWebsite.Controllers
         [HttpPost]
         public ActionResult Login(User u)
         {
-            ViewResult vr = null;
-            vr = View("UserHome", u);
+            ViewResult vr = View();
+            bool isUser = db.SignIn(u.UserName, u.UserPassword);
+            if (isUser)
+            {
+                vr = View("UserHome", u);
+            }
             return vr;
         }
 
@@ -36,8 +40,12 @@ namespace CrescendoWebsite.Controllers
         [HttpPost]
         public ActionResult NewUser(User u)
         {
-            ViewResult vr = null;
-            vr = View("UserHome", u);
+            ViewResult vr = View();
+            bool createSucces = db.CreateUser(u.UserName, u.UserPassword);
+            if (createSucces)
+            {
+                vr = View("UserHome", u);
+            }
             return vr;
         }
 
