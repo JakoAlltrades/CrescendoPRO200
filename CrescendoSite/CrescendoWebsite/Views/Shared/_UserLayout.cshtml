@@ -23,6 +23,7 @@
             <li>@Html.ActionLink("Home", "UserHome", Model)</li>
             <li>@Html.ActionLink("Your Data", "UserData", Model)</li>
             <li>@Html.ActionLink("Recordings", "Recordings", Model)</li>
+            <li>@Html.ActionLink("Chords", "Chords", Model)</li>
             
             @*<li><a href="~/Home/UserHome">Home</a></li>
             <li><a href="~/Home/UserData">Your Data</a></li>
@@ -34,7 +35,7 @@
 
     <h2>@ViewBag.Title</h2>
 
-    <div>
+    <div class="content">
         @RenderBody()
     </div>
 

@@ -11,6 +11,7 @@ namespace CrescendoWebsite.Controllers
     public class HomeController : Controller
     {
         DBhandler db = new DBhandler();
+        static List<GuitarChord> chords = GuitarChord.GetBasicChords();
 
         public ActionResult Index()
         {
@@ -74,6 +75,19 @@ namespace CrescendoWebsite.Controllers
             ViewResult vr = View("Index");
             if (u != null)
             {
+                //ViewBag.recordings = DBhandler.GetRecordings(u);
+                vr = View(u);
+            }
+            return vr;
+        }
+
+        public ActionResult Chords(User u)
+        {
+            ViewResult vr = View("Index");
+
+            if (u != null)
+            {
+                ViewBag.chords = chords;
                 vr = View(u);
             }
             return vr;

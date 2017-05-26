@@ -29,7 +29,9 @@ namespace CrescendoWebsite.Models
 
         public string GetTabForm()
         {
-            string tab = "";
+            string tab = "\n";
+
+            tab += ChordName + "\n";
 
             foreach (int j in StringPositions)
             {
@@ -42,14 +44,14 @@ namespace CrescendoWebsite.Models
         public static List<GuitarChord> GetBasicChords()
         {
             List<GuitarChord> chords = new List<GuitarChord>();
-            chords.Add(new GuitarChord("c Major", new int[] { 0, 3, 2, 0, 1, 0 }));
-            chords.Add(new GuitarChord("c Major", new int[] { 0, 0, 1, 2, 3, 0 }));
-            chords.Add(new GuitarChord("c Major", new int[] { 2, 1, 0, 0, 0, 3 }));
-            chords.Add(new GuitarChord("c Major", new int[] { 0, 2, 3, 1, 0, 0 }));
-            chords.Add(new GuitarChord("c Major", new int[] { 0, 0, 0, 1, 3, 2 }));
-            chords.Add(new GuitarChord("c Major", new int[] { 0, 0, 2, 3, 1, 0 }));
-            chords.Add(new GuitarChord("c Major", new int[] { 0, 2, 3, 0, 0, 0 }));
-            chords.Add(new GuitarChord("c Major", new int[] { 0, 0, 0, 2, 3, 1 }));
+            chords.Add(new GuitarChord("C", new int[] { 0, 3, 2, 0, 1, 0 }));
+            chords.Add(new GuitarChord("A", new int[] { 0, 0, 1, 2, 3, 0 }));
+            chords.Add(new GuitarChord("G", new int[] { 2, 1, 0, 0, 0, 3 }));
+            chords.Add(new GuitarChord("E", new int[] { 0, 2, 3, 1, 0, 0 }));
+            chords.Add(new GuitarChord("D", new int[] { 0, 0, 0, 1, 3, 2 }));
+            chords.Add(new GuitarChord("Am", new int[] { 0, 0, 2, 3, 1, 0 }));
+            chords.Add(new GuitarChord("Em", new int[] { 0, 2, 3, 0, 0, 0 }));
+            chords.Add(new GuitarChord("Dm", new int[] { 0, 0, 0, 2, 3, 1 }));
 
             return chords;
         }

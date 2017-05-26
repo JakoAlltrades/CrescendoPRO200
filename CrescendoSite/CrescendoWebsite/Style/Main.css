@@ -7,6 +7,9 @@
     20100F  -   Background
     E53B36  -   nav
 */
+html {
+    height: 100%;
+}
 
 body{
     /*background: radial-gradient(circle at 130% 100%, #ffffff, #091D26) fixed;*/
@@ -15,6 +18,7 @@ body{
     margin-top: 5%;
     margin-left: 10%;
     margin-right: 15%;
+    height: 100%;
 }
 
 ul {
@@ -23,6 +27,17 @@ ul {
     padding: 0;
     overflow: hidden;
     text-align: center;   
+}
+
+section {
+    margin: auto;
+    padding: 25px;
+    align-content: center;
+    align-self: center;
+}
+
+gallery {
+    margin: auto;
 }
 
 nav ul{
@@ -50,20 +65,55 @@ nav li img{
     padding: 0 5px;
 }
 nav li a:hover{
-    background-color: #E53B36;
+    background-color: #7F211E;
+}
+
+div{
+
+}
+.content {
+  min-height: 100%;
+}
+.content-inside {
+  padding: 20px;
+  padding-bottom: 50px;
 }
 footer{
-    width: 250px;
+    width: 100%;
     align-content: center;
     margin-left: auto;
     margin-right: auto;
     position: absolute;
-    padding: 10px 0px;
-    margin: 10px 0px;
+    padding: 10px 10px;
+    margin: -20px 0px;
     bottom: 0;
+    background: #20100F;
+    z-index: 10;
+}
+
+picture {
+    margin 10px;
+    padding: 15px;
+    background: #E53B36;
 }
 
 #resizeText:focus{
     font-size: 100px;
 }
+
+/*#chords {
+    white-space: pre;
+}*/
+
+pre {
+    text-indent: 0px;
+}
+
+#chord {
+    background: white;
+    margin: 20px;
+    padding: 10px;
+    width: 250px;
+}
+
 

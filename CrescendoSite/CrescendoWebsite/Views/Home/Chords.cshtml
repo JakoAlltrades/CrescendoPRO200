@@ -1,9 +1,8 @@
 ﻿
 
-
 @using CrescendoWebsite.Models
 
-@Model User
+@model User
 
 @{
     ViewBag.title = "Chords";
@@ -17,11 +16,16 @@
     <meta name="viewport" content="width=device-width" />
 </head>
 <body>
-    <div>
-        @foreach (GuitarChord c in ViewBag.chords)
-            {
-                Html.RenderPartial("_ChordPartial", c);
-            }
-    </div>
+    <section>
+        <gallery>
+            <picture><img src="~/Images/ChordChart.jpg" id="GalleryImage" /> </picture>
+            
+        </gallery>
+    </section>
+    
+    @*@foreach (GuitarChord c in ViewBag.chords)
+        {
+            Html.RenderPartial("_ChordPartial", c);
+        }*@
 </body>
 </html>

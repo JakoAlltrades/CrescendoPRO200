@@ -18,7 +18,10 @@
 <body>
     <h1>From here you can view all of your recordings</h1>
     <div>
-     
+        @foreach (Recording r in ViewBag.recordings)
+        {
+            Html.RenderPartial("_RecordingPartial", r);
+        }
     </div>
 </body>
 </html>
