@@ -1,0 +1,27 @@
+﻿
+
+
+@using CrescendoWebsite.Models
+
+@Model User
+
+@{
+    ViewBag.title = "Chords";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+</head>
+<body>
+    <div>
+        @foreach (GuitarChord c in ViewBag.chords)
+            {
+                Html.RenderPartial("_ChordPartial", c);
+            }
+    </div>
+</body>
+</html>
