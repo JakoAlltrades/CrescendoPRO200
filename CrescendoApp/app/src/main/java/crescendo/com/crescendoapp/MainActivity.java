@@ -8,10 +8,13 @@ import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
 
+    DBHandler dbHandler;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sign_in);
+        dbHandler = new DBHandler();
     }
     public void userHome(View view)
     {

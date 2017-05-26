@@ -2,49 +2,67 @@
 <items version="2" >
 
     <item
-        is-multidex="false"
-        jar="C:\Users\jprirm\.android\build-cache\48ce391b1401bb42f85b453d5cd07f25dde72ec3\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="d4cf6227dd6a2ceff0f7dcf0c324380b7abf2c28">
-        <dex dex="C:\Users\jprirm\Documents\GitHub\CrescendoPRO200\CrescendoApp\app\build\intermediates\pre-dexed\debug\classes_06a25412841eefae0e4d411b7394bf34363d2073.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\jprirm\Documents\GitHub\CrescendoPRO200\CrescendoApp\app\libs\commons-codec-1.10\commons-codec-1.10.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="4b95f4897fa13f2cd904aee711aeafc0c5295cd8">
-        <dex dex="C:\Users\jprirm\Documents\GitHub\CrescendoPRO200\CrescendoApp\app\build\intermediates\pre-dexed\debug\commons-codec-1.10_894695bf5d549e72d53deefe384b22fd9a78401b.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\jprirm\.android\build-cache\eacfc8eeed6eb615d0b71e4a72e57499d096f2d2\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="38789e20ace9ab7dbd00554bd2673ab424478d3b">
-        <dex dex="C:\Users\jprirm\Documents\GitHub\CrescendoPRO200\CrescendoApp\app\build\intermediates\pre-dexed\debug\classes_3d0e44634d7e93dacb05144e245f5d77369ee41c.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\jprirm\Documents\GitHub\CrescendoPRO200\CrescendoApp\app\libs\org.apache.commons.httpclient.jar\org.apache.commons.httpclient.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="962616364835eaa661b7b5eaa0c5ead586d2c4fa">
-        <dex dex="C:\Users\jprirm\Documents\GitHub\CrescendoPRO200\CrescendoApp\app\build\intermediates\pre-dexed\debug\org.apache.commons.httpclient_8ff9352bfbbc11f107a4cdb4af08571670456423.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\jprirm\.android\build-cache\217b573988f6b956c2af13977f5f9f49c22a7c41\output\jars\classes.jar"
-        jumboMode="false"
+        is-multidex="true"
+        jar="C:\Users\Brandon\.android\build-cache\82818cf87f989e276a3174034ef2f0f547fc4c1d\output\jars\classes.jar"
+        jumboMode="true"
         optimize="true"
         revision="25.0.2"
         sha1="95519720620b553f63afc789beba9ad582807f7c">
-        <dex dex="C:\Users\jprirm\Documents\GitHub\CrescendoPRO200\CrescendoApp\app\build\intermediates\pre-dexed\debug\classes_eca30be70cb50e56d68eeb924a538fb40ce83003.jar" />
+        <dex dex="C:\dev\Existing projects Development\CrescendoPRO200\CrescendoApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_2a4aaaf7e2c53976eb59ed5d6e5e99ea2b1c1a10\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\dev\Existing projects Development\CrescendoPRO200\CrescendoApp\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="dc5469f9652cc8379c57d92455b82c5c69562f5e">
+        <dex dex="C:\dev\Existing projects Development\CrescendoPRO200\CrescendoApp\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_f41ddd6a4ae33fe9065a5aadba8ffd2d9f715b9f\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Brandon\.android\build-cache\49add5dbf38efc208330f9e3909814ad8daaff82\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="38789e20ace9ab7dbd00554bd2673ab424478d3b">
+        <dex dex="C:\dev\Existing projects Development\CrescendoPRO200\CrescendoApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_d0c6a759fc52069f8ae76d432d68d63a70fecf52\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\dev\Existing projects Development\CrescendoPRO200\CrescendoApp\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="caff8e51a24901cfc9cd7e1cf83d84f4cb0c103b">
+        <dex dex="C:\dev\Existing projects Development\CrescendoPRO200\CrescendoApp\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_80905bb96cf812f6ec362a483f20d4a0aa6278f8\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Brandon\.android\build-cache\bfcbd48a13342e5fefb5342879d0c8b7eaa67fe6\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d4cf6227dd6a2ceff0f7dcf0c324380b7abf2c28">
+        <dex dex="C:\dev\Existing projects Development\CrescendoPRO200\CrescendoApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_60725dd7efe7f3134ba532bf36015a5bf157a5fc\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\dev\Existing projects Development\CrescendoPRO200\CrescendoApp\app\libs\commons-codec-1.10\commons-codec-1.10.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="4b95f4897fa13f2cd904aee711aeafc0c5295cd8">
+        <dex dex="C:\dev\Existing projects Development\CrescendoPRO200\CrescendoApp\app\build\intermediates\transforms\dex\debug\folders\1000\2\commons-codec-1.10_f693c5cd42c60b50647b0adedd554b865019d630\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\dev\Existing projects Development\CrescendoPRO200\CrescendoApp\app\libs\org.apache.commons.httpclient.jar\org.apache.commons.httpclient.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="962616364835eaa661b7b5eaa0c5ead586d2c4fa">
+        <dex dex="C:\dev\Existing projects Development\CrescendoPRO200\CrescendoApp\app\build\intermediates\transforms\dex\debug\folders\1000\2\org.apache.commons.httpclient_c3fe9d9206dbf2d54bd4923c863851634ad4e43a\classes.dex" />
     </item>
 
 </items>
