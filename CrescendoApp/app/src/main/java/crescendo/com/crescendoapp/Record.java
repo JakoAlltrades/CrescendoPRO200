@@ -40,7 +40,7 @@ public class Record  extends AppCompatActivity {
         setContentView(R.layout.record);
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
-        //doStuff();
+        doStuff();
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -124,44 +124,44 @@ public class Record  extends AppCompatActivity {
             }
         });
 
-//        buttonPlayLastRecordAudio.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) throws IllegalArgumentException,
-//                    SecurityException, IllegalStateException {
-//
-//                buttonStop.setEnabled(false);
-//                buttonStart.setEnabled(false);
-//                buttonStopPlayingRecording.setEnabled(true);
-//
-//                mediaPlayer = new MediaPlayer();
-//                try {
-//                    mediaPlayer.setDataSource(AudioSavePathInDevice);
-//                    mediaPlayer.prepare();
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//
-//                mediaPlayer.start();
-//                Toast.makeText(Record.this, "Recording Playing",
-//                        Toast.LENGTH_LONG).show();
-//            }
-//        });
+        buttonPlayLastRecordAudio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) throws IllegalArgumentException,
+                    SecurityException, IllegalStateException {
 
-//        buttonStopPlayingRecording.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                buttonStop.setEnabled(false);
-//                buttonStart.setEnabled(true);
-//                buttonStopPlayingRecording.setEnabled(false);
-//                buttonPlayLastRecordAudio.setEnabled(true);
-//
-//                if(mediaPlayer != null){
-//                    mediaPlayer.stop();
-//                    mediaPlayer.release();
-//                    MediaRecorderReady();
-//                }
-//            }
-//        });
+                buttonStop.setEnabled(false);
+                buttonStart.setEnabled(false);
+                buttonStopPlayingRecording.setEnabled(true);
+
+                mediaPlayer = new MediaPlayer();
+                try {
+                    mediaPlayer.setDataSource(AudioSavePathInDevice);
+                    mediaPlayer.prepare();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                mediaPlayer.start();
+                Toast.makeText(Record.this, "Recording Playing",
+                        Toast.LENGTH_LONG).show();
+            }
+        });
+
+        buttonStopPlayingRecording.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                buttonStop.setEnabled(false);
+                buttonStart.setEnabled(true);
+                buttonStopPlayingRecording.setEnabled(false);
+                buttonPlayLastRecordAudio.setEnabled(true);
+
+                if(mediaPlayer != null){
+                    mediaPlayer.stop();
+                    mediaPlayer.release();
+                    MediaRecorderReady();
+                }
+            }
+        });
 
     }
 

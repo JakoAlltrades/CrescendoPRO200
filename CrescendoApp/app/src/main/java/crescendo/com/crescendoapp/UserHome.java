@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import github.bewantbe.audio_analyzer_for_android.AnalyzerActivity;
+
 /**
  * Created by Brandon on 5/18/2017.
  */
@@ -28,7 +30,7 @@ public class UserHome  extends AppCompatActivity {
     }
     public void tune(View view)
     {
-        Intent myIntent = new Intent(UserHome.this, Tune.class);
+        Intent myIntent = new Intent(UserHome.this, AnalyzerActivity.class);
         startActivity(myIntent);
     }
     public void metronome(View view)

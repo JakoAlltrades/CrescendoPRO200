@@ -7,10 +7,11 @@
 
     <view
         android:id="@+id/plot"
+        class="github.bewantbe.audio_analyzer_for_android.AnalyzerGraphic"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
         android:layout_weight="0.32"
-        class="github.bewantbe.audio_analyzer_for_android.AnalyzerGraphic"
+        android:background="#40100f"
         custom:cutoffDb="-25"
         custom:sampleRate="16000" />
 
@@ -24,8 +25,10 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
+            android:background="#40100F"
             android:lines="2"
             android:text="@string/textview_RMS_text"
+            android:textColor="#FFFFFF"
             android:typeface="monospace" />
 
         <TextView
@@ -33,9 +36,11 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:layout_toRightOf="@id/textview_RMS"
             android:layout_toEndOf="@id/textview_RMS"
+            android:layout_toRightOf="@id/textview_RMS"
+            android:background="#40100F"
             android:text="@string/textview_cur_text"
+            android:textColor="#FFFFFF"
             android:typeface="monospace" />
 
         <TextView
@@ -43,9 +48,11 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/textview_cur"
-            android:layout_toRightOf="@id/textview_RMS"
             android:layout_toEndOf="@id/textview_RMS"
+            android:layout_toRightOf="@id/textview_RMS"
+            android:background="#40100F"
             android:text="@string/textview_peak_text"
+            android:textColor="#FFFFFF"
             android:typeface="monospace" />
     </RelativeLayout>
 
@@ -53,26 +60,30 @@
         android:id="@+id/textview_rec"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:background="#40100F"
         android:text="@string/textview_rec_text"
+        android:textColor="#FFFFFF"
         android:typeface="monospace" />
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="50sp"
+        android:background="#40100F"
         android:gravity="center"
-        android:orientation="horizontal" >
+        android:orientation="horizontal">
 
         <github.bewantbe.audio_analyzer_for_android.SelectorText
             android:id="@+id/button_recording"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
+            android:background="#E53B36"
             android:paddingLeft="15dp"
             android:paddingStart="15dp"
             android:tag="select"
             android:text="Mon"
+            android:textColor="#FFFFFF"
             android:textSize="20sp"
-            custom:itemsDisplay="@string/button_recording"
             custom:items="Mon Rec" />
 
         <Button
@@ -80,8 +91,10 @@
             android:layout_width="wrap_content"
             android:layout_height="@dimen/button_button_height"
             android:layout_gravity="center"
+            android:background="#E53B36"
             android:onClick="showPopupMenu"
             android:text="@string/sample_s"
+            android:textColor="#FFFFFF"
             android:textSize="@dimen/button_text_fontsize" />
 
         <Button
@@ -89,8 +102,10 @@
             android:layout_width="wrap_content"
             android:layout_height="@dimen/button_button_height"
             android:layout_gravity="center"
+            android:background="#E53B36"
             android:onClick="showPopupMenu"
             android:text="@string/fftlen"
+            android:textColor="#FFFFFF"
             android:textSize="@dimen/button_text_fontsize" />
 
         <Button
@@ -98,41 +113,48 @@
             android:layout_width="wrap_content"
             android:layout_height="@dimen/button_button_height"
             android:layout_gravity="center"
+            android:background="#E53B36"
             android:onClick="showPopupMenu"
             android:text="@string/ave"
+            android:textColor="#FFFFFF"
             android:textSize="@dimen/button_text_fontsize" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:gravity="center" >
+        android:background="#40100F"
+        android:gravity="center">
 
         <github.bewantbe.audio_analyzer_for_android.SelectorText
             android:id="@+id/spectrum_spectrogram_mode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
+            android:background="#E53B36"
             android:paddingLeft="15dp"
             android:paddingStart="15dp"
             android:tag="select"
             android:text="1D"
+            android:textColor="#FFFFFF"
             android:textSize="20sp"
-            custom:itemsDisplay="@string/button_spectrum_spectrogram_mode"
-            custom:items="spum spam" />
+            custom:items="spum spam"
+            custom:itemsDisplay="@string/button_spectrum_spectrogram_mode" />
 
         <github.bewantbe.audio_analyzer_for_android.SelectorText
             android:id="@+id/dbA"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
+            android:background="#E53B36"
             android:paddingLeft="15dp"
             android:paddingStart="15dp"
             android:tag="select"
             android:text="dB"
+            android:textColor="#FFFFFF"
             android:textSize="20sp"
-            custom:itemsDisplay="@string/button_dbA"
-            custom:items="dB dBA" />
+            custom:items="dB dBA"
+            custom:itemsDisplay="@string/button_dbA" />
 
         <!--<github.bewantbe.audio_analyzer_for_android.SelectorText-->
         <!--android:id="@+id/graph_view_mode"-->
@@ -150,26 +172,30 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
+            android:background="#E53B36"
             android:paddingLeft="15dp"
             android:paddingStart="15dp"
             android:tag="select"
             android:text="linear"
+            android:textColor="#FFFFFF"
             android:textSize="20sp"
-            custom:itemsDisplay="@string/button_freq_scaling_mode"
-            custom:items="linear log note" />
+            custom:items="linear log note"
+            custom:itemsDisplay="@string/button_freq_scaling_mode" />
 
         <github.bewantbe.audio_analyzer_for_android.SelectorText
             android:id="@+id/run"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
+            android:background="#E53B36"
             android:paddingLeft="15dp"
             android:paddingStart="15dp"
             android:tag="select"
             android:text="run"
+            android:textColor="#FFFFFF"
             android:textSize="20sp"
-            custom:itemsDisplay="@string/button_run"
-            custom:items="run stop" />
+            custom:items="run stop"
+            custom:itemsDisplay="@string/button_run" />
     </LinearLayout>
 
 </LinearLayout>
