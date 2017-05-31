@@ -5,6 +5,8 @@ import com.intuit.quickbase.api.QuickBaseAuthenticator;
 import com.intuit.quickbase.api.QuickBaseConnection;
 import com.intuit.quickbase.util.QuickBaseClient;
 
+import java.util.Vector;
+
 /**
  * Created by jprirm on 5/25/2017.
  */
@@ -28,8 +30,9 @@ public class DBHandler {
         try {
             //String tableID = QBClient.findDbByName("CrescendoDB");
             //Log.i("Table:", tableID);
-            QBClient.doQuery("bms24ytdy", "{'0'.EX." + id + "}","1", "", "");
+            Vector v = QBClient.doQuery("bms24ytdy", "{'0'.EX." + id + "}","0.1.2.3", "", "");
             //QBClient.doQuery("bms24ytdy", "{'0'.EX." + id + "}","UserID.UserName.UserPassword", "", "");
+            Object o = v.get(0);
         }
         catch (Exception e)
         {

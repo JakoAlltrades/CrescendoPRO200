@@ -671,7 +671,6 @@ public class QuickBaseClient
         writeDoc(qdbRequest, sw);
         sw.close();
         String content = sw.toString();
-        content  += "</xml>";
         System.out.println("----------------\n" + content + "\n----------------\n");
         URLConnect.setBody(content);
         URLConnect.doConnect();
