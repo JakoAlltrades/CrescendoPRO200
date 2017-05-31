@@ -40,7 +40,7 @@ public class Record  extends AppCompatActivity {
         setContentView(R.layout.record);
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
-        doStuff();
+        //doStuff();
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
