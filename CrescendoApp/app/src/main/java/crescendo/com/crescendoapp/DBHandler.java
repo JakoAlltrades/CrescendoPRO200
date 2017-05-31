@@ -2,6 +2,7 @@ package crescendo.com.crescendoapp;
 
 import com.intuit.quickbase.util.QuickBaseClient;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.Vector;
@@ -16,8 +17,24 @@ public class DBHandler {
     public DBHandler() {
         QBClient = new QuickBaseClient("Jpriemo1234@gmail.com", "Crescendo1", "https://johnpriem.quickbase.com/db/");
         //QBClient.setAppToken("duzpt2fcvsybbgkrkup4bjurh8b");
+        //AddUserToDB();
         GetsUserByID(1);
     }
+
+    public boolean AddUserToDB()
+    {
+        HashMap<String, String> User = new HashMap<String,String>();
+        User.put("UserID", "5");
+        User.put("UserName", "Jimmy");
+        User.put("UserPassword", "Bob");
+        try {
+            QBClient.addRecord("bms24ytdy",User);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
 
     public User GetsUserByID(int id)
     {
@@ -55,6 +72,7 @@ public class DBHandler {
         }
         return user;
     }
+
 
 
 }
