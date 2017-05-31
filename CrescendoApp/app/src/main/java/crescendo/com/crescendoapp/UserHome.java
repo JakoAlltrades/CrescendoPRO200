@@ -43,9 +43,5 @@ public class UserHome  extends AppCompatActivity {
         Intent myIntent = new Intent(UserHome.this, Chords.class);
         startActivity(myIntent);
     }
-    public void scales(View view)
-    {
-        Intent myIntent = new Intent(UserHome.this, Scales.class);
-        startActivity(myIntent);
-    }
+
 }

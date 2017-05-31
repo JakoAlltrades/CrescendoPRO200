@@ -23,7 +23,6 @@
         <activity android:name=".Chords" android:label="@string/app_name" ></activity>
         <activity android:name=".Metronome" android:label="@string/app_name" ></activity>
         <activity android:name=".Record" android:label="@string/app_name" ></activity>
-        <activity android:name=".Scales" android:label="@string/app_name" ></activity>
         <activity android:name=".viewtune" android:label="@string/app_name" ></activity>
         <activity android:name=".Tune" android:label="@string/app_name" ></activity>
         <activity android:name=".UserData" android:label="@string/app_name" ></activity>
