@@ -13,7 +13,7 @@ namespace CrescendoWebsite.Models
         IQApplication application;
         IQTable table;
 
-        Dictionary<String, String> tableNames = new Dictionary<String, String> { {"Users", "bms24ytdy" }, { "Recordings", "bms24ytgg" } };
+        Dictionary<String, String> tableNames = new Dictionary<String, String> { { "Users", "bms24ytdy" }, { "Recordings", "bms24ytgg" }, { "Pitches", "bmtmx5ca8" } };
 
         private int curUserID;//handles the current UserID for the database
         public DBhandler()
@@ -22,6 +22,7 @@ namespace CrescendoWebsite.Models
             application = client.Connect("bms24ys95", "duzpt2fcvsybbgkrkup4bjurh8b");
             table = application.GetTable(GetTableID("Users"));
             setCurUserID();
+            GetRecording();
             /*Pulls all users and prints their information
             foreach(IQRecord record in table.Records)
             {
@@ -33,7 +34,7 @@ namespace CrescendoWebsite.Models
 
         private string GetTableID(string TableName)
         {
-            return tableNames.Where(x => x.Key == "Users").Select(x => x.Value).SingleOrDefault();
+            return tableNames.Where(x => x.Key == TableName).Select(x => x.Value).SingleOrDefault();
         }
 
         public bool CreateUser(String userName, String password)
@@ -42,7 +43,7 @@ namespace CrescendoWebsite.Models
             table.Query();
             bool userCreated = false;
             IQRecord tempUser = table.Records.Where(x => x[1] == userName).SingleOrDefault();
-            if(tempUser == null)
+            if (tempUser == null)
             {
                 tempUser = table.NewRecord();
                 tempUser[0] = curUserID.ToString();
@@ -64,9 +65,9 @@ namespace CrescendoWebsite.Models
             table.Query();
             bool userLoggedIn = false;
             IQRecord prevUser = table.Records.Where(x => x[1] == userName).SingleOrDefault();
-            if(prevUser != null)
+            if (prevUser != null)
             {
-                if(prevUser[2] == password)
+                if (prevUser[2] == password)
                 {
                     userLoggedIn = true;
                 }
@@ -82,6 +83,13 @@ namespace CrescendoWebsite.Models
             return userLoggedIn;
         }
 
+        public void GetRecording()
+        {
+            table = application.GetTable(GetTableID("Recordings"));
+            table.Query();
+            IQRecord recording = table.Records.Where(x => x[1] == 0.ToString()).SingleOrDefault();
+        }
+        //1
         private void IncrementCurUserID()
         {
             curUserID++;
