@@ -23,7 +23,7 @@ namespace CrescendoWebsite.Models
             application = client.Connect("bms24ys95", "duzpt2fcvsybbgkrkup4bjurh8b");
             table = application.GetTable(GetTableID("Users"));
             setCurUserID();
-            GetRecording();
+            //GetRecording();
             /*Pulls all users and prints their information
             foreach(IQRecord record in table.Records)
             {
@@ -84,14 +84,13 @@ namespace CrescendoWebsite.Models
             return userLoggedIn;
         }
 
-        public void GetRecording()
+        public void GetRecording(int userID, int RecordingID)
         {
             table = application.GetTable(GetTableID("Recordings"));
             table.Query();
             IQRecord recording = table.Records.Where(x => x[1] == 0.ToString()).SingleOrDefault();
-            recording.DownloadFile("Recording", HttpContext.Current.Server.MapPath("/DataHolding/"),0);
-            FileStream fs = File.Create(HttpContext.Current.Server.MapPath("/DataHolding/") + recording[3]);
-
+            //recording.DownloadFile("Recording", HttpContext.Current.Server.MapPath("/DataHolding/"), 1);
+            //FileStream fs = File.Create(HttpContext.Current.Server.MapPath("/DataHolding/") + recording[3]);
         }
         //1
         private void IncrementCurUserID()
