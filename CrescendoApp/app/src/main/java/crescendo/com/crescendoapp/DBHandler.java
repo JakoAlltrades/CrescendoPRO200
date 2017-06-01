@@ -13,27 +13,54 @@ import java.util.Vector;
 
 public class DBHandler {
     QuickBaseClient QBClient;
+    HashMap<String, String> tableNames = new HashMap<String, String>();
 
     public DBHandler() {
         QBClient = new QuickBaseClient("Jpriemo1234@gmail.com", "Crescendo1", "https://johnpriem.quickbase.com/db/");
+        tableNames.put("Users", "bms24ytdy");
+        tableNames.put("Recordings", "bms24ytgg");
+        tableNames.put("Pitches", "bmtmx5ca8");
         //QBClient.setAppToken("duzpt2fcvsybbgkrkup4bjurh8b");
         //AddUserToDB();
-        GetsUserByID(1);
+        //GetsUserByID(1);
+        SignIn("Jack", "Priem");
     }
 
-    public boolean AddUserToDB()
+    public boolean CreateUser(String userName, String password)
     {
-        HashMap<String, String> User = new HashMap<String,String>();
-        User.put("UserID", "5");
-        User.put("UserName", "Jimmy");
-        User.put("UserPassword", "Bob");
+        boolean userCreated = false;
+        if(!UserNameAlreadyUsed(userName)) {
+            HashMap<String, String> User = new HashMap<String, String>();
+            User.put("UserID", "1");//create a varible that gets the current id for the table (last id plus one);
+            User.put("UserName", userName);
+            User.put("UserPassword", password);
+            try {
+                QBClient.addRecord("bms24ytdy", User);
+                userCreated = true;
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return userCreated;
+    }
+
+    public boolean UserNameAlreadyUsed(String userName)
+    {
+        boolean userNameUsed = false;
         try {
-            QBClient.addRecord("bms24ytdy",User);
-        } catch (Exception e) {
+            Vector v = QBClient.doQuery(tableNames.get("Users"), "{7.EX.'" + userName + "'}", "a", "", "");
+            if(v.size() > 0)
+            {
+                userNameUsed = true;
+            }
+        }
+        catch(Exception e)
+        {
             e.printStackTrace();
         }
-        return false;
+        return userNameUsed;
     }
+
 
 
     public User GetsUserByID(int id)
@@ -42,7 +69,7 @@ public class DBHandler {
         try {
             //String tableID = QBClient.findDbByName("CrescendoDB");
             //Log.i("Table:", tableID);
-            Vector v = QBClient.doQuery("bms24ytdy", "{'0'.EX." + id + "}","a", "", "");
+            Vector v = QBClient.doQuery(tableNames.get("Users"), "{'0'.EX." + id + "}","a", "", "");
             //QBClient.doQuery("bms24ytdy", "{'0'.EX." + id + "}","UserID.UserName.UserPassword", "", "");
             Map<String, String> o = (Map<String, String>) v.get(0);
             Set<Map.Entry<String, String>> set = o.entrySet();
@@ -71,6 +98,38 @@ public class DBHandler {
             e.printStackTrace();
         }
         return user;
+    }
+
+    public boolean SignIn(String userName, String password)
+    {
+        boolean userLoggedIn = false;
+        try {
+            Vector user = QBClient.doQuery(tableNames.get("Users"), "{7.EX.'" +userName+ "'}", "a","","");
+            if(user.size() <= 1 && user.size() > 0)
+            {
+                Map<String, String> map = (Map<String, String>) user.get(0);
+                for(Map.Entry<String,String> entry : map.entrySet())
+                {
+                    if(entry.getKey().equals("UserPassword"))
+                    {
+                        if(entry.getValue().equals(password))
+                        {
+                            userLoggedIn = true;
+                        }
+                        else
+                        {
+                            //invalid password
+                        }
+                    }
+                }
+            }
+            else {
+                //more than one user found
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return userLoggedIn;
     }
 
 
