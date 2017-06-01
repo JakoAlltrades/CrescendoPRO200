@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using Intuit.QuickBase.Client;
 using Intuit.QuickBase.Core;
+using System.IO;
 
 namespace CrescendoWebsite.Models
 {
@@ -88,6 +89,9 @@ namespace CrescendoWebsite.Models
             table = application.GetTable(GetTableID("Recordings"));
             table.Query();
             IQRecord recording = table.Records.Where(x => x[1] == 0.ToString()).SingleOrDefault();
+            recording.DownloadFile("Recording", HttpContext.Current.Server.MapPath("/DataHolding/"),0);
+            FileStream fs = File.Create(HttpContext.Current.Server.MapPath("/DataHolding/") + recording[3]);
+
         }
         //1
         private void IncrementCurUserID()

@@ -61,6 +61,26 @@ public class DBHandler {
         return userNameUsed;
     }
 
+    public int GetUserIDByUserName(String userName)
+    {
+        int userID = -1;
+        try {
+            Vector v = QBClient.doQuery(tableNames.get("Users"), "{7.EX.'" + userName + "'}", "a", "", "");
+            Map<String, String> record = (Map) v.get(0);
+            for(Map.Entry<String, String> entry: record.entrySet())
+            {
+                if(entry.getKey().equals("UserID"))
+                {
+                    userID = Integer.parseInt(entry.getValue());
+                }
+            }
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return userID;
+    }
 
 
     public User GetsUserByID(int id)
