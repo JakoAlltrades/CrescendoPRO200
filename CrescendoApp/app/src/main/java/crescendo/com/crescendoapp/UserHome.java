@@ -21,7 +21,7 @@ public class UserHome  extends AppCompatActivity {
         setContentView(R.layout.userhome);
         //get id here
         TextView username = (TextView) findViewById(R.id.username);
-        int userid = 0;
+        int userid = -1;
         userid = getIntent().getIntExtra("User_id", userid);
         user = dbHandler.GetsUserByID(userid);
         username.append(""+user.getUsername());

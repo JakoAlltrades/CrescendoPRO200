@@ -12,7 +12,7 @@ import android.widget.Toast;
  */
 
 public class Sign_Up  extends AppCompatActivity {
-
+    DBHandler dbHandler = new DBHandler();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,9 +34,18 @@ public class Sign_Up  extends AppCompatActivity {
     {
         EditText first = (EditText)findViewById(R.id.password);
         EditText second= (EditText)findViewById(R.id.passwordConf);
-        if(first.getText().toString().equals(second.getText().toString()))
+        EditText user = (EditText) findViewById(R.id.user);
+        String password = first.getText().toString();
+        String secpass = second.getText().toString();
+        String username = user.getText().toString();
+
+        if(password.equals(secpass))
         {
-            //database check
+            if(dbHandler.SignIn(username,password))
+            {
+                return false;
+            }
+            dbHandler.CreateUser(username, password );
             return true;
         }
         else
