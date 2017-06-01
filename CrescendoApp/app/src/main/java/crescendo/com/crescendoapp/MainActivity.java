@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,13 +19,27 @@ public class MainActivity extends AppCompatActivity {
     }
     public void userHome(View view)
     {
-        EditText username = (EditText)findViewById(R.id.username);
-        EditText password = (EditText)findViewById(R.id.password);
+        EditText user = (EditText)findViewById(R.id.username);
+        EditText pass= (EditText)findViewById(R.id.password);
+        String username = user.getText().toString();
+        String password = pass.getText().toString();
+
+
+        if(dbHandler.SignIn(username,password))
+        {//if exists
+            Intent myIntent = new Intent(MainActivity.this, UserHome.class);
+            myIntent.putExtra("User_id", );
+            startActivity(myIntent);
+        }
+        else
+        {
+            Toast.makeText(MainActivity.this, "User Name or password not valid",Toast.LENGTH_LONG ).show();
+
+           // Toast.
+        }
         /*
         checkDatabase(username,password);
          */
-        Intent myIntent = new Intent(MainActivity.this, UserHome.class);
-        startActivity(myIntent);
     }
     public void signUp(View view)
     {

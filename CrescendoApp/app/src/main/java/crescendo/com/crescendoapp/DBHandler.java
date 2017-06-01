@@ -23,7 +23,7 @@ public class DBHandler {
         //QBClient.setAppToken("duzpt2fcvsybbgkrkup4bjurh8b");
         //AddUserToDB();
         //GetsUserByID(1);
-        SignIn("Jack", "Priem");
+       // SignIn("Jack", "Priem");
     }
 
     public boolean CreateUser(String userName, String password)
@@ -44,7 +44,7 @@ public class DBHandler {
         return userCreated;
     }
 
-    public boolean UserNameAlreadyUsed(String userName)
+    private boolean UserNameAlreadyUsed(String userName)
     {
         boolean userNameUsed = false;
         try {
