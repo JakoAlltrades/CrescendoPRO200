@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         if(dbHandler.SignIn(username,password))
         {//if exists
             Intent myIntent = new Intent(MainActivity.this, UserHome.class);
-            myIntent.putExtra("User_id", );
+           // myIntent.putExtra("User_id");
             startActivity(myIntent);
         }
         else
