@@ -14,12 +14,14 @@ import java.util.Vector;
 public class DBHandler {
     QuickBaseClient QBClient;
     HashMap<String, String> tableNames = new HashMap<String, String>();
+    int curID;
 
     public DBHandler() {
         QBClient = new QuickBaseClient("Jpriemo1234@gmail.com", "Crescendo1", "https://johnpriem.quickbase.com/db/");
         tableNames.put("Users", "bms24ytdy");
         tableNames.put("Recordings", "bms24ytgg");
         tableNames.put("Pitches", "bmtmx5ca8");
+        //setCurID("Users");
         //QBClient.setAppToken("duzpt2fcvsybbgkrkup4bjurh8b");
         //AddUserToDB();
         //GetsUserByID(1);
@@ -28,14 +30,15 @@ public class DBHandler {
 
     public boolean CreateUser(String userName, String password)
     {
+        setCurID("Users");
         boolean userCreated = false;
         if(!UserNameAlreadyUsed(userName)) {
             HashMap<String, String> User = new HashMap<String, String>();
-            User.put("UserID", "1");//create a varible that gets the current id for the table (last id plus one);
+            User.put("UserID",  curID + "");//create a varible that gets the current id for the table (last id plus one);
             User.put("UserName", userName);
             User.put("UserPassword", password);
             try {
-                QBClient.addRecord("bms24ytdy", User);
+                QBClient.addRecord(tableNames.get("Users"), User);
                 userCreated = true;
             } catch (Exception e) {
                 e.printStackTrace();
@@ -119,6 +122,31 @@ public class DBHandler {
         }
         return user;
     }
+
+    private void setCurID(String tableName)
+    {
+        curID = 0;
+        try{
+            Vector v = QBClient.doQuery(tableNames.get(tableName), "{'0'.GTE.'0'}", "6", "", "");
+            for(int j = 0; j < v.size(); j++)
+            {
+                Map<String,String> map = (Map<String,String>) v.get(j);
+                for(Map.Entry<String,String> entry: map.entrySet())
+                {
+                    int tempID = Integer.parseInt(entry.getValue());
+                    if(tempID > curID)
+                    {
+                        curID = tempID;
+                    }
+                }
+            }
+        }catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        curID+= 1;
+    }
+
 
     public boolean SignIn(String userName, String password)
     {
