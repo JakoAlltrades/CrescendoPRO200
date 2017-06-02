@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="C:\Users\chance\AndroidStudioProjects\FinalCrescendo\Crescendo\CrescendoPRO200\CrescendoApp\app\libs\org.apache.commons.io.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="b90b6ac57cf27a2858eaa490d02ba7945d18ca7b">
+        <dex dex="C:\Users\chance\AndroidStudioProjects\FinalCrescendo\Crescendo\CrescendoPRO200\CrescendoApp\app\build\intermediates\pre-dexed\debug\org.apache.commons.io_895e22a462c8d8a49041651025effa4452405bbf.jar" />
+    </item>
+
+</items>

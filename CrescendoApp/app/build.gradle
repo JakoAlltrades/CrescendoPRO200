@@ -30,4 +30,5 @@ dependencies {
     compile 'com.android.support:design:25.3.1'
     compile files('libs/org.apache.commons.httpclient.jar/org.apache.commons.httpclient.jar')
     compile files('libs/commons-codec-1.10/commons-codec-1.10.jar')
+    compile files('libs/org.apache.commons.io.jar')
 }

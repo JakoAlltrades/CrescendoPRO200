@@ -1,7 +1,10 @@
 package crescendo.com.crescendoapp;
 
+import android.content.Context;
+
 import com.intuit.quickbase.util.QuickBaseClient;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -12,30 +15,108 @@ import java.util.Vector;
  */
 
 public class DBHandler {
+    Context c;
     QuickBaseClient QBClient;
     HashMap<String, String> tableNames = new HashMap<String, String>();
+    int curID;
 
-    public DBHandler() {
+    public DBHandler(Context context) {
+        c = context;
         QBClient = new QuickBaseClient("Jpriemo1234@gmail.com", "Crescendo1", "https://johnpriem.quickbase.com/db/");
         tableNames.put("Users", "bms24ytdy");
         tableNames.put("Recordings", "bms24ytgg");
         tableNames.put("Pitches", "bmtmx5ca8");
+        GrabPitch(1);
+        GrabPitches();
+        //GrabRecords(0);
+        //GrabRecord(0,0);
+        //setCurID("Users");
         //QBClient.setAppToken("duzpt2fcvsybbgkrkup4bjurh8b");
         //AddUserToDB();
         //GetsUserByID(1);
-        SignIn("Jack", "Priem");
+       // SignIn("Jack", "Priem");
     }
+
+    public Pitch GrabPitch(int PitchID)
+    {
+        Pitch pitch = null;
+        try{
+            Vector v= QBClient.doQuery(tableNames.get("Pitches"), "{'0'.EX." + PitchID +"}", "a", "", "");
+            if(v.size() == 1)
+            {
+                Map<String,String> pitchRecord = (Map<String,String>) v.get(0);
+                pitch = new Pitch(-1, "", "");
+                for(Map.Entry<String,String> entry: pitchRecord.entrySet())
+                {
+                    if(entry.getKey().equals("PitchID"))
+                    {
+                        pitch.setPitchID(Integer.parseInt(entry.getValue()));
+                    }
+                    if(entry.getKey().equals("PitchName"))
+                    {
+                        pitch.setPitchName(entry.getValue());
+                    }
+                    if(entry.getKey().equals("Pitch"))
+                    {
+                        pitch.setPitchURL(entry.getValue());
+                    }
+                }
+            }
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return pitch;
+    }
+
+    public ArrayList<Pitch> GrabPitches()
+    {
+        ArrayList<Pitch> pitches = new ArrayList<Pitch>();
+        try{
+            Vector pitchesCollection = QBClient.doQuery(tableNames.get("Pitches"), "{'0'.GTE.0}", "a","","");
+            ArrayList<Integer> pitchIDs = new ArrayList<>();
+            ArrayList<String> pitchName = new ArrayList<>();
+            ArrayList<String> pitchURL = new ArrayList<>();
+            for(int j = 0; j < pitchesCollection.size(); j++)
+            {
+                Map<String, String> map = (Map) pitchesCollection.get(j);
+                for(Map.Entry<String, String> entry: map.entrySet())
+                {
+                    if(entry.getKey().equals("PitchID"))
+                    {
+                        pitchIDs.add(Integer.parseInt(entry.getValue()));
+                    }
+                    if(entry.getKey().equals("PitchName"))
+                    {
+                        pitchName.add(entry.getValue());
+                    }
+                    if(entry.getKey().equals("Pitch"))
+                    {
+                        pitchURL.add(entry.getValue());
+                    }
+                }
+            }
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return pitches;
+    }
+
 
     public boolean CreateUser(String userName, String password)
     {
+        setCurID("Users");
         boolean userCreated = false;
         if(!UserNameAlreadyUsed(userName)) {
             HashMap<String, String> User = new HashMap<String, String>();
-            User.put("UserID", "1");//create a varible that gets the current id for the table (last id plus one);
+            User.put("UserID",  curID + "");//create a varible that gets the current id for the table (last id plus one);
             User.put("UserName", userName);
             User.put("UserPassword", password);
             try {
-                QBClient.addRecord("bms24ytdy", User);
+                QBClient.addRecord(tableNames.get("Users"), User);
                 userCreated = true;
             } catch (Exception e) {
                 e.printStackTrace();
@@ -44,7 +125,7 @@ public class DBHandler {
         return userCreated;
     }
 
-    public boolean UserNameAlreadyUsed(String userName)
+    private boolean UserNameAlreadyUsed(String userName)
     {
         boolean userNameUsed = false;
         try {
@@ -61,6 +142,26 @@ public class DBHandler {
         return userNameUsed;
     }
 
+    public int GetUserIDByUserName(String userName)
+    {
+        int userID = -1;
+        try {
+            Vector v = QBClient.doQuery(tableNames.get("Users"), "{7.EX.'" + userName + "'}", "a", "", "");
+            Map<String, String> record = (Map) v.get(0);
+            for(Map.Entry<String, String> entry: record.entrySet())
+            {
+                if(entry.getKey().equals("UserID"))
+                {
+                    userID = Integer.parseInt(entry.getValue());
+                }
+            }
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return userID;
+    }
 
 
     public User GetsUserByID(int id)
@@ -91,7 +192,6 @@ public class DBHandler {
                 }
             }
             user = new User(uName,uPassword);
-
         }
         catch (Exception e)
         {
@@ -99,6 +199,31 @@ public class DBHandler {
         }
         return user;
     }
+
+    private void setCurID(String tableName)
+    {
+        curID = 0;
+        try{
+            Vector v = QBClient.doQuery(tableNames.get(tableName), "{'0'.GTE.'0'}", "6", "", "");
+            for(int j = 0; j < v.size(); j++)
+            {
+                Map<String,String> map = (Map<String,String>) v.get(j);
+                for(Map.Entry<String,String> entry: map.entrySet())
+                {
+                    int tempID = Integer.parseInt(entry.getValue());
+                    if(tempID > curID)
+                    {
+                        curID = tempID;
+                    }
+                }
+            }
+        }catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        curID+= 1;
+    }
+
 
     public boolean SignIn(String userName, String password)
     {
@@ -130,6 +255,67 @@ public class DBHandler {
             e.printStackTrace();
         }
         return userLoggedIn;
+    }
+
+    public ArrayList<Recording> GrabRecords(int userID)
+    {
+        ArrayList<Recording> recordings = null;
+        try{
+            Vector record = QBClient.doQuery(tableNames.get("Recordings"), "{0.EX." + userID + "}", "a", "", "");
+            ArrayList<String> recordTitles = new ArrayList<>();
+            ArrayList<String> recordIDs = new ArrayList<>();
+            for(int j = 0; j < record.size(); j++)
+            {
+                Map<String, String> map = (Map<String, String>) record.get(j);
+                for(Map.Entry<String,String> entry: map.entrySet())
+                {
+                    if(entry.getKey().equals("RecordingID"))
+                    {
+                        recordIDs.add(entry.getValue());
+                    }
+                    if(entry.getKey().equals("RecordingTitle"))
+                    {
+                        recordTitles.add(entry.getValue());
+                    }
+                }
+            }
+            recordings = new ArrayList<Recording>();
+            for(int j = 0; j < recordIDs.size(); j++)
+            {
+                recordings.add(new Recording(recordTitles.get(j), Integer.parseInt(recordIDs.get(j))));
+            }
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        return recordings;
+    }
+
+    public void GrabRecord(int UserID, int recordID) {
+        try {
+            Vector record = QBClient.doQuery(tableNames.get("Recordings"),"{'7'.EX." + recordID +"}AND{'0'.EX."+UserID+"}" , "a", "", "");
+            Map<String, String> map = (Map) record.get(0);
+            String recordingFileandURL = null, recordingTitle = null;
+            for(Map.Entry<String,String> entry: map.entrySet())
+            {
+                if(entry.getKey().equals("Recording"))
+                {
+                    recordingFileandURL =  entry.getValue();
+                }
+                if(entry.getKey().equals("RecordingTitle"))
+                {
+                    recordingTitle = entry.getValue();
+                }
+            }
+            recordingFileandURL = recordingFileandURL.replace(recordingTitle + ".mp3", "");
+            recordingFileandURL = recordingFileandURL.replace("<url>", "");
+            recordingFileandURL = recordingFileandURL.replace("</url>", "");
+            DownloadFileFromURL downloadFileFromURL = new DownloadFileFromURL();
+            downloadFileFromURL.execute(recordingFileandURL + recordingTitle + ".mp3");
+            downloadFileFromURL.downloadFile(recordingFileandURL + recordingTitle + ".mp3", recordingTitle + ".mp3", c);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 
