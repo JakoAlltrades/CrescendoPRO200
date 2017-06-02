@@ -12,7 +12,8 @@ import android.widget.Toast;
  */
 
 public class Sign_Up  extends AppCompatActivity {
-
+    DBHandler dbHandler = new DBHandler(this.getBaseContext());
+    private  String username;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +24,8 @@ public class Sign_Up  extends AppCompatActivity {
         if(newUser())
         {
             Intent myIntent = new Intent(Sign_Up.this, UserHome.class);
+            int id  = dbHandler.GetUserIDByUserName(username);
+            myIntent.putExtra("User_id", id);
             startActivity(myIntent);
         }
         else
@@ -34,9 +37,18 @@ public class Sign_Up  extends AppCompatActivity {
     {
         EditText first = (EditText)findViewById(R.id.password);
         EditText second= (EditText)findViewById(R.id.passwordConf);
-        if(first.getText().toString().equals(second.getText().toString()))
+        EditText user = (EditText) findViewById(R.id.user);
+        String password = first.getText().toString();
+        String secpass = second.getText().toString();
+        username = user.getText().toString();
+
+        if(password.equals(secpass))
         {
-            //database check
+            if(dbHandler.SignIn(username,password))
+            {
+                return false;
+            }
+            dbHandler.CreateUser(username, password );
             return true;
         }
         else

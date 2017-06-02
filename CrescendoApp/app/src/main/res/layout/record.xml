@@ -1,125 +1,201 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/my_toolbar"
+    <view
+        android:id="@+id/plot"
+        class="github.bewantbe.audio_analyzer_for_android.AnalyzerGraphic"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.32"
+        android:background="#40100f"
+        custom:cutoffDb="-25"
+        custom:sampleRate="16000" />
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="#E53B36"
-        android:elevation="4dp"
-        android:onClick="showPopupMenu"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
-    <android.support.constraint.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#40100f">
+        android:layout_height="wrap_content" >
 
         <TextView
-            android:id="@+id/time"
-            android:layout_width="wrap_content"
+            android:id="@+id/textview_RMS"
+            android:layout_width="@dimen/textview_RMS_layout_width"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginTop="8dp"
-            android:text="00:00"
-            android:textColor="@android:color/background_light"
-            android:textSize="30sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.47" />
-
-        <Button
-            android:id="@+id/start"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginTop="8dp"
-            android:background="#E53B36"
-            android:text="Record"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:background="#40100F"
+            android:lines="2"
+            android:text="@string/textview_RMS_text"
             android:textColor="#FFFFFF"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.075"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.727" />
-
-        <Button
-            android:id="@+id/stop"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginTop="8dp"
-            android:background="#E53B36"
-            android:text="Stop"
-            android:textColor="#FFFFFF"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.914"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.727" />
-
-        <Button
-            android:id="@+id/pause"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginTop="8dp"
-            android:background="#E53B36"
-            android:text="| |"
-            android:textColor="#FFFFFF"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.727" />
-
-        <Button
-            android:id="@+id/save"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginTop="8dp"
-            android:background="#E53B36"
-            android:text="Upload"
-            android:textColor="#FFFFFF"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.885" />
+            android:typeface="monospace" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/textview_cur"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@id/textview_RMS"
+            android:layout_toRightOf="@id/textview_RMS"
+            android:background="#40100F"
+            android:text="@string/textview_cur_text"
+            android:textColor="#FFFFFF"
+            android:typeface="monospace" />
+
+        <TextView
+            android:id="@+id/textview_peak"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textview_cur"
+            android:layout_toEndOf="@id/textview_RMS"
+            android:layout_toRightOf="@id/textview_RMS"
+            android:background="#40100F"
+            android:text="@string/textview_peak_text"
+            android:textColor="#FFFFFF"
+            android:typeface="monospace" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/textview_rec"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#40100F"
+        android:text="@string/textview_rec_text"
+        android:textColor="#FFFFFF"
+        android:typeface="monospace" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="50sp"
+        android:background="#40100F"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <github.bewantbe.audio_analyzer_for_android.SelectorText
+            android:id="@+id/button_recording"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginTop="8dp"
-            android:text="Sound Display"
-            android:textSize="30sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.225" />
-    </android.support.constraint.ConstraintLayout>
+            android:layout_margin="4dp"
+            android:background="#E53B36"
+            android:paddingLeft="15dp"
+            android:paddingStart="15dp"
+            android:tag="select"
+            android:text="Mon"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            custom:items="Mon Rec" />
+
+        <Button
+            android:id="@+id/button_sample_rate"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/button_button_height"
+            android:layout_gravity="center"
+            android:background="#E53B36"
+            android:onClick="showPopupMenu"
+            android:text="@string/sample_s"
+            android:textColor="#FFFFFF"
+            android:textSize="@dimen/button_text_fontsize" />
+
+        <Button
+            android:id="@+id/button_fftlen"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/button_button_height"
+            android:layout_gravity="center"
+            android:background="#E53B36"
+            android:onClick="showPopupMenu"
+            android:text="@string/fftlen"
+            android:textColor="#FFFFFF"
+            android:textSize="@dimen/button_text_fontsize" />
+
+        <Button
+            android:id="@+id/button_average"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/button_button_height"
+            android:layout_gravity="center"
+            android:background="#E53B36"
+            android:onClick="showPopupMenu"
+            android:text="@string/ave"
+            android:textColor="#FFFFFF"
+            android:textSize="@dimen/button_text_fontsize" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#40100F"
+        android:gravity="center">
+
+        <github.bewantbe.audio_analyzer_for_android.SelectorText
+            android:id="@+id/spectrum_spectrogram_mode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:background="#E53B36"
+            android:paddingLeft="15dp"
+            android:paddingStart="15dp"
+            android:tag="select"
+            android:text="1D"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            custom:items="spum spam"
+            custom:itemsDisplay="@string/button_spectrum_spectrogram_mode" />
+
+        <github.bewantbe.audio_analyzer_for_android.SelectorText
+            android:id="@+id/dbA"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:background="#E53B36"
+            android:paddingLeft="15dp"
+            android:paddingStart="15dp"
+            android:tag="select"
+            android:text="dB"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            custom:items="dB dBA"
+            custom:itemsDisplay="@string/button_dbA" />
+
+        <!--<github.bewantbe.audio_analyzer_for_android.SelectorText-->
+        <!--android:id="@+id/graph_view_mode"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_margin="4dp"-->
+        <!--android:paddingLeft="15dp"-->
+        <!--android:tag="select"-->
+        <!--android:text="scale"-->
+        <!--android:textSize="20sp"-->
+        <!--custom:items="cursor scale" />-->
+
+        <github.bewantbe.audio_analyzer_for_android.SelectorText
+            android:id="@+id/freq_scaling_mode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:background="#E53B36"
+            android:paddingLeft="15dp"
+            android:paddingStart="15dp"
+            android:tag="select"
+            android:text="linear"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            custom:items="linear log note"
+            custom:itemsDisplay="@string/button_freq_scaling_mode" />
+
+        <github.bewantbe.audio_analyzer_for_android.SelectorText
+            android:id="@+id/run"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:background="#E53B36"
+            android:paddingLeft="15dp"
+            android:paddingStart="15dp"
+            android:tag="select"
+            android:text="run"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            custom:items="run stop"
+            custom:itemsDisplay="@string/button_run" />
+    </LinearLayout>
+
 </LinearLayout>

@@ -38,8 +38,8 @@ public class Record  extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.record);
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
-        setSupportActionBar(myToolbar);
+        //Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+//        /setSupportActionBar(myToolbar);
         //doStuff();
     }
     @Override
@@ -63,8 +63,8 @@ public class Record  extends AppCompatActivity {
     }
     public void doStuff()
     {
-        buttonStart = (Button) findViewById(R.id.start);
-        buttonStop = (Button) findViewById(R.id.stop);
+       // buttonStart = (Button) findViewById(R.id.start);
+       // buttonStop = (Button) findViewById(R.id.stop);
 //        buttonPlayLastRecordAudio = (Button) findViewById(R.id.button3);
 //        buttonStopPlayingRecording = (Button)findViewById(R.id.button4);
 
