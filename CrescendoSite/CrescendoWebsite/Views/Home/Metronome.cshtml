@@ -1,0 +1,32 @@
+﻿@using CrescendoWebsite.Models
+@using System.Media
+
+@model User
+
+@{
+    ViewBag.title = "Home";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+    int beatsPerMin = 60;
+    SoundPlayer player = new SoundPlayer("~/Sounds/blockclick.wab");
+    Metronome met = new Metronome(player, beatsPerMin);
+    Timer t = new Timer();
+    t.Interval = met.GetInterval();
+    t.Tick += met.MetronomeTick;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>UserHome</title>
+</head>
+<body>
+    <h1>Here is the Metronome</h1>
+    
+    <input type="button" 
+
+    <div>
+    </div>
+</body>
+</html>

@@ -154,6 +154,7 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Sounds\blockclick.wav" />
     <Content Include="Style\Main.css" />
     <Content Include="Web.config" />
     <Content Include="Views\Home\UserData.cshtml" />
@@ -163,6 +164,8 @@
     <Content Include="Views\Shared\_RecordingPartial.cshtml" />
     <Content Include="Views\Shared\_ChordPartial.cshtml" />
     <Content Include="Views\Home\Chords.cshtml" />
+    <Content Include="Views\Home\Metronome.cshtml" />
+    <Content Include="Views\Home\Pitches.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />
@@ -189,8 +192,8 @@
     </Compile>
     <Compile Include="Models\DBhandler.cs" />
     <Compile Include="Models\GuitarChord.cs" />
-    <Compile Include="Models\Pitch.cs" />
     <Compile Include="Models\Recording.cs" />
+    <Compile Include="Models\Metronome.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -220,7 +223,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="DataHolding\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
