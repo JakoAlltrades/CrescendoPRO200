@@ -4,8 +4,7 @@ import android.content.Context;
 
 import com.intuit.quickbase.util.QuickBaseClient;
 
-import java.io.File;
-import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -27,7 +26,8 @@ public class DBHandler {
         tableNames.put("Users", "bms24ytdy");
         tableNames.put("Recordings", "bms24ytgg");
         tableNames.put("Pitches", "bmtmx5ca8");
-        GrabRecord(0,0);
+        //GrabRecords(0);
+        //GrabRecord(0,0);
         //setCurID("Users");
         //QBClient.setAppToken("duzpt2fcvsybbgkrkup4bjurh8b");
         //AddUserToDB();
@@ -186,6 +186,40 @@ public class DBHandler {
         return userLoggedIn;
     }
 
+    public ArrayList<Recording> GrabRecords(int userID)
+    {
+        ArrayList<Recording> recordings = null;
+        try{
+            Vector record = QBClient.doQuery(tableNames.get("Recordings"), "{0.EX." + userID + "}", "a", "", "");
+            ArrayList<String> recordTitles = new ArrayList<>();
+            ArrayList<String> recordIDs = new ArrayList<>();
+            for(int j = 0; j < record.size(); j++)
+            {
+                Map<String, String> map = (Map<String, String>) record.get(j);
+                for(Map.Entry<String,String> entry: map.entrySet())
+                {
+                    if(entry.getKey().equals("RecordingID"))
+                    {
+                        recordIDs.add(entry.getValue());
+                    }
+                    if(entry.getKey().equals("RecordingTitle"))
+                    {
+                        recordTitles.add(entry.getValue());
+                    }
+                }
+            }
+            recordings = new ArrayList<Recording>();
+            for(int j = 0; j < recordIDs.size(); j++)
+            {
+                recordings.add(new Recording(recordTitles.get(j), Integer.parseInt(recordIDs.get(j))));
+            }
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        return recordings;
+    }
+
     public void GrabRecord(int UserID, int recordID) {
         try {
             Vector record = QBClient.doQuery(tableNames.get("Recordings"),"{'7'.EX." + recordID +"}AND{'0'.EX."+UserID+"}" , "a", "", "");
@@ -205,8 +239,6 @@ public class DBHandler {
             recordingFileandURL = recordingFileandURL.replace(recordingTitle + ".mp3", "");
             recordingFileandURL = recordingFileandURL.replace("<url>", "");
             recordingFileandURL = recordingFileandURL.replace("</url>", "");
-            URL url = new URL(recordingFileandURL + recordingTitle + ".mp3");
-            File file = new File(recordingTitle + ".mp3");
             DownloadFileFromURL downloadFileFromURL = new DownloadFileFromURL();
             downloadFileFromURL.execute(recordingFileandURL + recordingTitle + ".mp3");
             downloadFileFromURL.downloadFile(recordingFileandURL + recordingTitle + ".mp3", recordingTitle + ".mp3", c);
