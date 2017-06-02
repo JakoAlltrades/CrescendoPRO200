@@ -163,6 +163,7 @@
     <Content Include="Views\Shared\_RecordingPartial.cshtml" />
     <Content Include="Views\Shared\_ChordPartial.cshtml" />
     <Content Include="Views\Home\Chords.cshtml" />
+    <Content Include="Views\Home\Metronome.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />
@@ -190,6 +191,7 @@
     <Compile Include="Models\DBhandler.cs" />
     <Compile Include="Models\GuitarChord.cs" />
     <Compile Include="Models\Recording.cs" />
+    <Compile Include="Models\Timer.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

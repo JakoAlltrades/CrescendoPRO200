@@ -7,7 +7,8 @@
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="#40100F">
 
         <Button
             android:id="@+id/MetStartButton"
@@ -17,14 +18,15 @@
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginTop="8dp"
+            android:background="#FF413B"
             android:onClick="MetronomeStartClick"
             android:text="Start"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.342"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.774"
-            app:layout_constraintHorizontal_bias="0.342" />
+            app:layout_constraintVertical_bias="0.774" />
 
         <Button
             android:id="@+id/MetStopButton"
@@ -34,6 +36,7 @@
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginTop="8dp"
+            android:background="#FF413B"
             android:onClick="MetronomeStopClick"
             android:text="Stop"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -51,7 +54,9 @@
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginTop="8dp"
+            android:background="#FF413B"
             android:max="218"
+            android:thumbTint="@android:color/darker_gray"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -72,7 +77,8 @@
             android:padding="10dp"
             android:text="TextView"
             android:textAlignment="center"
-            android:textSize="18sp"
+            android:textColor="@android:color/white"
+            android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
