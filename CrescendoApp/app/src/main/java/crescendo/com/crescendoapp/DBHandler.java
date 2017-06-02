@@ -26,6 +26,8 @@ public class DBHandler {
         tableNames.put("Users", "bms24ytdy");
         tableNames.put("Recordings", "bms24ytgg");
         tableNames.put("Pitches", "bmtmx5ca8");
+        GrabPitch(1);
+        GrabPitches();
         //GrabRecords(0);
         //GrabRecord(0,0);
         //setCurID("Users");
@@ -34,6 +36,75 @@ public class DBHandler {
         //GetsUserByID(1);
        // SignIn("Jack", "Priem");
     }
+
+    public Pitch GrabPitch(int PitchID)
+    {
+        Pitch pitch = null;
+        try{
+            Vector v= QBClient.doQuery(tableNames.get("Pitches"), "{'0'.EX." + PitchID +"}", "a", "", "");
+            if(v.size() == 1)
+            {
+                Map<String,String> pitchRecord = (Map<String,String>) v.get(0);
+                pitch = new Pitch(-1, "", "");
+                for(Map.Entry<String,String> entry: pitchRecord.entrySet())
+                {
+                    if(entry.getKey().equals("PitchID"))
+                    {
+                        pitch.setPitchID(Integer.parseInt(entry.getValue()));
+                    }
+                    if(entry.getKey().equals("PitchName"))
+                    {
+                        pitch.setPitchName(entry.getValue());
+                    }
+                    if(entry.getKey().equals("Pitch"))
+                    {
+                        pitch.setPitchURL(entry.getValue());
+                    }
+                }
+            }
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return pitch;
+    }
+
+    public ArrayList<Pitch> GrabPitches()
+    {
+        ArrayList<Pitch> pitches = new ArrayList<Pitch>();
+        try{
+            Vector pitchesCollection = QBClient.doQuery(tableNames.get("Pitches"), "{'0'.GTE.0}", "a","","");
+            ArrayList<Integer> pitchIDs = new ArrayList<>();
+            ArrayList<String> pitchName = new ArrayList<>();
+            ArrayList<String> pitchURL = new ArrayList<>();
+            for(int j = 0; j < pitchesCollection.size(); j++)
+            {
+                Map<String, String> map = (Map) pitchesCollection.get(j);
+                for(Map.Entry<String, String> entry: map.entrySet())
+                {
+                    if(entry.getKey().equals("PitchID"))
+                    {
+                        pitchIDs.add(Integer.parseInt(entry.getValue()));
+                    }
+                    if(entry.getKey().equals("PitchName"))
+                    {
+                        pitchName.add(entry.getValue());
+                    }
+                    if(entry.getKey().equals("Pitch"))
+                    {
+                        pitchURL.add(entry.getValue());
+                    }
+                }
+            }
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return pitches;
+    }
+
 
     public boolean CreateUser(String userName, String password)
     {
