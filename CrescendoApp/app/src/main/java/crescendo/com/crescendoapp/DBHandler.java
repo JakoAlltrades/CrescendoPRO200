@@ -26,8 +26,9 @@ public class DBHandler {
         tableNames.put("Users", "bms24ytdy");
         tableNames.put("Recordings", "bms24ytgg");
         tableNames.put("Pitches", "bmtmx5ca8");
-        GrabPitch(1);
-        GrabPitches();
+        //GrabPitch(8);
+        CreateRecording(0, "Demo.mp3");
+        //GrabPitches();
         //GrabRecords(0);
         //GrabRecord(0,0);
         //setCurID("Users");
@@ -103,6 +104,27 @@ public class DBHandler {
             e.printStackTrace();
         }
         return pitches;
+    }
+
+    public boolean CreateRecording(int userID, String fileName)
+    {
+        setCurID("Recordings");
+        boolean recordingCreated = false;
+
+        HashMap record = new HashMap<>();
+        record.put("RecordingID",curID + "");
+        record.put("UserID", userID + "");
+        record.put("RecordingTitle", fileName);
+        record.put("Recording", fileName);
+        try{
+            QBClient.addRecord(tableNames.get("Recordings"), record);
+            recordingCreated = true;
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return recordingCreated;
     }
 
 
