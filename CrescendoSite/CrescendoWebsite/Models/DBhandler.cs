@@ -23,6 +23,8 @@ namespace CrescendoWebsite.Models
             application = client.Connect("bms24ys95", "duzpt2fcvsybbgkrkup4bjurh8b");
             table = application.GetTable(GetTableID("Users"));
             setCurUserID();
+            GrabPitch(0);
+            GrabPitches();
             //GetRecording(0,0);
             //GrabRecordings(0);
             /*Pulls all users and prints their information
@@ -83,6 +85,36 @@ namespace CrescendoWebsite.Models
                 //User not found, make sure that person entered their name correctly
             }
             return userLoggedIn;
+        }
+
+        public List<Pitch> GrabPitches()
+        {
+            List<Pitch> pitches = new List<Pitch>();
+            table = application.GetTable(GetTableID("Pitches"));
+            table.Query();
+            QRecordCollection pitchesCollection = table.Records;
+            for (int j = 0; j < pitchesCollection.Count; j++)
+            {
+                int id;
+                if (Int32.TryParse(pitchesCollection.ElementAt(j)[0], out id))
+                {
+                    pitches.Add(new Pitch(id, pitchesCollection.ElementAt(j)[1], pitchesCollection.ElementAt(j)[2]));
+                }
+            }
+            return pitches.OrderBy(x => x.PitchID).ToList();
+        }
+
+        public Pitch GrabPitch(int pitchID)
+        {
+            Pitch pitch = null;
+            table = application.GetTable(GetTableID("Pitches"));
+            table.Query();
+            IQRecord pitchRecord = table.Records.Where(x => x[0] == pitchID.ToString()).SingleOrDefault();
+            if(pitchRecord != null)
+            {
+                pitch = new Pitch(pitchID, pitchRecord[1], pitchRecord[2]);
+            }
+            return pitch;
         }
 
         public Recording GetRecording(int userID, int RecordingID)
