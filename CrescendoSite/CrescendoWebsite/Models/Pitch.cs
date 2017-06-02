@@ -10,6 +10,7 @@ namespace CrescendoWebsite.Models
         public int PitchID { get; set; }
         public string PitchName { get; set; }
         public string PitchFileName { get; set; }
+
         public Pitch(int PitchID, string PitchName, string PitchFileName)
         {
             this.PitchID = PitchID;
