@@ -21,7 +21,7 @@ public class UserHome  extends AppCompatActivity {
         setContentView(R.layout.userhome);
         //get id here
         TextView username = (TextView) findViewById(R.id.username);
-        int userid = 0;
+        int userid = -1;
         userid = getIntent().getIntExtra("User_id", userid);
         user = dbHandler.GetsUserByID(userid);
         username.append(""+user.getUsername());
@@ -33,7 +33,7 @@ public class UserHome  extends AppCompatActivity {
     }
     public void record(View view)
     {
-        Intent myIntent = new Intent(UserHome.this, Record.class);
+        Intent myIntent = new Intent(UserHome.this, AnalyzerActivity.class);
         startActivity(myIntent);
     }
     public void tune(View view)
@@ -49,6 +49,11 @@ public class UserHome  extends AppCompatActivity {
     public void chords(View view)
     {
         Intent myIntent = new Intent(UserHome.this, Chords.class);
+        startActivity(myIntent);
+    }
+    public void viewtune(View view)
+    {
+        Intent myIntent = new Intent(UserHome.this, viewtune.class);
         startActivity(myIntent);
     }
 
