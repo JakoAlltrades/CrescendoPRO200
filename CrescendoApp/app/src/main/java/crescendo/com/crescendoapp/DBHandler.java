@@ -26,8 +26,8 @@ public class DBHandler {
         tableNames.put("Users", "bms24ytdy");
         tableNames.put("Recordings", "bms24ytgg");
         tableNames.put("Pitches", "bmtmx5ca8");
-        GrabPitch(1);
-        GrabPitches();
+//        GrabPitch(1);
+//        GrabPitches();
         //GrabRecords(0);
         //GrabRecord(0,0);
         //setCurID("Users");
