@@ -28,14 +28,13 @@ public class MainActivity extends AppCompatActivity {
         if(dbHandler.SignIn(username,password))
         {//if exists
             Intent myIntent = new Intent(MainActivity.this, UserHome.class);
-            myIntent.putExtra("User_id", 1);
+            int id  = dbHandler.GetUserIDByUserName(username);
+            myIntent.putExtra("User_id", id);
             startActivity(myIntent);
         }
         else
         {
             Toast.makeText(MainActivity.this, "User Name or password not valid",Toast.LENGTH_LONG ).show();
-
-           // Toast.
         }
         /*
         checkDatabase(username,password);

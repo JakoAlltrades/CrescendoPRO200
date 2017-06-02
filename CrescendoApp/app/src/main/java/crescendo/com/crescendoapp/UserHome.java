@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.TextView;
 
 import github.bewantbe.audio_analyzer_for_android.AnalyzerActivity;
 
@@ -12,11 +13,18 @@ import github.bewantbe.audio_analyzer_for_android.AnalyzerActivity;
  */
 
 public class UserHome  extends AppCompatActivity {
-
+    DBHandler dbHandler = new DBHandler();
+    User user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.userhome);
+        //get id here
+        TextView username = (TextView) findViewById(R.id.username);
+        int userid = 0;
+        userid = getIntent().getIntExtra("User_id", userid);
+        user = dbHandler.GetsUserByID(userid);
+        username.append(""+user.getUsername());
     }
     public void view(View view)
     {
