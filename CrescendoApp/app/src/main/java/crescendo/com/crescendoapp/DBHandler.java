@@ -1,7 +1,11 @@
 package crescendo.com.crescendoapp;
 
+import android.content.Context;
+
 import com.intuit.quickbase.util.QuickBaseClient;
 
+import java.io.File;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -12,15 +16,18 @@ import java.util.Vector;
  */
 
 public class DBHandler {
+    Context c;
     QuickBaseClient QBClient;
     HashMap<String, String> tableNames = new HashMap<String, String>();
     int curID;
 
-    public DBHandler() {
+    public DBHandler(Context context) {
+        c = context;
         QBClient = new QuickBaseClient("Jpriemo1234@gmail.com", "Crescendo1", "https://johnpriem.quickbase.com/db/");
         tableNames.put("Users", "bms24ytdy");
         tableNames.put("Recordings", "bms24ytgg");
         tableNames.put("Pitches", "bmtmx5ca8");
+        GrabRecord(0,0);
         //setCurID("Users");
         //QBClient.setAppToken("duzpt2fcvsybbgkrkup4bjurh8b");
         //AddUserToDB();
@@ -114,7 +121,6 @@ public class DBHandler {
                 }
             }
             user = new User(uName,uPassword);
-
         }
         catch (Exception e)
         {
@@ -178,6 +184,35 @@ public class DBHandler {
             e.printStackTrace();
         }
         return userLoggedIn;
+    }
+
+    public void GrabRecord(int UserID, int recordID) {
+        try {
+            Vector record = QBClient.doQuery(tableNames.get("Recordings"),"{'7'.EX." + recordID +"}AND{'0'.EX."+UserID+"}" , "a", "", "");
+            Map<String, String> map = (Map) record.get(0);
+            String recordingFileandURL = null, recordingTitle = null;
+            for(Map.Entry<String,String> entry: map.entrySet())
+            {
+                if(entry.getKey().equals("Recording"))
+                {
+                    recordingFileandURL =  entry.getValue();
+                }
+                if(entry.getKey().equals("RecordingTitle"))
+                {
+                    recordingTitle = entry.getValue();
+                }
+            }
+            recordingFileandURL = recordingFileandURL.replace(recordingTitle + ".mp3", "");
+            recordingFileandURL = recordingFileandURL.replace("<url>", "");
+            recordingFileandURL = recordingFileandURL.replace("</url>", "");
+            URL url = new URL(recordingFileandURL + recordingTitle + ".mp3");
+            File file = new File(recordingTitle + ".mp3");
+            DownloadFileFromURL downloadFileFromURL = new DownloadFileFromURL();
+            downloadFileFromURL.execute(recordingFileandURL + recordingTitle + ".mp3");
+            downloadFileFromURL.downloadFile(recordingFileandURL + recordingTitle + ".mp3", recordingTitle + ".mp3", c);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 

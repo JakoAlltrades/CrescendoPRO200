@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sign_in);
-        dbHandler = new DBHandler();
+        dbHandler = new DBHandler(this.getBaseContext());
     }
     public void userHome(View view)
     {
