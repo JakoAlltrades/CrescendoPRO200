@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.intuit.quickbase.util.QuickBaseClient;
 
+import java.io.RandomAccessFile;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -110,13 +111,16 @@ public class DBHandler {
     {
         setCurID("Recordings");
         boolean recordingCreated = false;
-
         HashMap record = new HashMap<>();
-        record.put("RecordingID",curID + "");
-        record.put("UserID", userID + "");
-        record.put("RecordingTitle", fileName);
-        record.put("Recording", fileName);
         try{
+            byte[] file;
+            RandomAccessFile f = new RandomAccessFile("C:\\Users\\jprirm\\Documents\\GitHub\\CrescendoPRO200\\CrescendoApp\\DataHold\\" + fileName, "r");
+            file = new byte[(int) f.length()];
+            f.readFully(file);
+            record.put("RecordingID",curID + "");
+            record.put("UserID", userID + "");
+            record.put("RecordingTitle", fileName);
+            record.put("Recording", file);
             QBClient.addRecord(tableNames.get("Recordings"), record);
             recordingCreated = true;
         }
