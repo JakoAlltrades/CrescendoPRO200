@@ -56,6 +56,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import crescendo.com.crescendoapp.R;
+import crescendo.com.crescendoapp.UserHome;
 
 /**
  * Audio "FFT" analyzer.
@@ -897,6 +898,11 @@ public class AnalyzerActivity extends Activity
             default:
                 return true;
         }
+    }
+    public void userhome(View view)
+    {
+        Intent myIntent = new Intent(AnalyzerActivity.this, UserHome.class);
+        startActivity(myIntent);
     }
 
     private void vibrate(int ms) {

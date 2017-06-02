@@ -120,6 +120,16 @@
             android:textSize="@dimen/button_text_fontsize" />
     </LinearLayout>
 
+    <Button
+        android:id="@+id/button11"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#E53B36"
+        android:onClick="userhome"
+        android:text="To User Home"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp" />
+
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
