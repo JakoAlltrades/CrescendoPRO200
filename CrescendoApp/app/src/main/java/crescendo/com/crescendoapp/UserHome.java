@@ -13,7 +13,7 @@ import github.bewantbe.audio_analyzer_for_android.AnalyzerActivity;
  */
 
 public class UserHome  extends AppCompatActivity {
-    DBHandler dbHandler = new DBHandler();
+    DBHandler dbHandler = new DBHandler(this.getBaseContext());
     User user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
