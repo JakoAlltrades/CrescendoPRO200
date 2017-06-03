@@ -65,6 +65,7 @@ namespace CrescendoWebsite.Controllers
             ViewResult vr = View("Index");
             if (u != null)
             {
+               // ViewBag.Recordings = 
                 vr = View(u);
             }
             return vr;
