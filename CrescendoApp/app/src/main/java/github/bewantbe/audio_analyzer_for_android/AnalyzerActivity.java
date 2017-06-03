@@ -85,7 +85,7 @@ public class AnalyzerActivity extends Activity
     private boolean isMeasure = false;
     private boolean isLockViewRange = false;
     volatile boolean bSaveWav = false;
-
+    int userid=0;
     CalibrationLoad calibLoad = new CalibrationLoad();  // data for calibration of spectrum
 
     @Override
@@ -120,6 +120,7 @@ public class AnalyzerActivity extends Activity
         rangeViewDialogC = new RangeViewDialogC(this, analyzerViews.graphView);
 
         mDetector = new GestureDetectorCompat(this, new AnalyzerGestureListener());
+        getIntent().getIntExtra("User_id", userid);
     }
 
     /**
@@ -902,6 +903,7 @@ public class AnalyzerActivity extends Activity
     public void userhome(View view)
     {
         Intent myIntent = new Intent(AnalyzerActivity.this, UserHome.class);
+        myIntent.putExtra("User_id", userid);
         startActivity(myIntent);
     }
 
