@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.sign_in);
         dbHandler = new DBHandler(this.getBaseContext());
         fileDir = this.getExternalFilesDir("");
-        UploadRecord();
+        //UploadRecord();
     }
     public void userHome(View view)
     {

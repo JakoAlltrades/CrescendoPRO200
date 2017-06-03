@@ -32,7 +32,7 @@ public class DBHandler {
         //GrabPitch(8);
         //GrabPitches();
         //GrabRecords(0);
-        //GrabRecord(0,0);
+        GrabRecord(0,0);
         //setCurID("Users");
         //QBClient.setAppToken("duzpt2fcvsybbgkrkup4bjurh8b");
         //AddUserToDB();
@@ -320,7 +320,8 @@ public class DBHandler {
         return recordings;
     }
 
-    public void GrabRecord(int UserID, int recordID) {
+    public byte[] GrabRecord(int UserID, int recordID) {
+        byte[] b= null;
         try {
             Vector record = QBClient.doQuery(tableNames.get("Recordings"),"{'7'.EX." + recordID +"}AND{'0'.EX."+UserID+"}" , "a", "", "");
             Map<String, String> map = (Map) record.get(0);
@@ -336,15 +337,18 @@ public class DBHandler {
                     recordingTitle = entry.getValue();
                 }
             }
+            FileAttachment fileAttachment = new FileAttachment(recordingTitle, recordingFileandURL);
             recordingFileandURL = recordingFileandURL.replace(recordingTitle + ".mp3", "");
             recordingFileandURL = recordingFileandURL.replace("<url>", "");
             recordingFileandURL = recordingFileandURL.replace("</url>", "");
             DownloadFileFromURL downloadFileFromURL = new DownloadFileFromURL();
-            downloadFileFromURL.execute(recordingFileandURL + recordingTitle + ".mp3");
-            downloadFileFromURL.downloadFile(recordingFileandURL + recordingTitle + ".mp3", recordingTitle + ".mp3", c);
+            b = fileAttachment.getContents();
+            //downloadFileFromURL.execute(recordingFileandURL + recordingTitle + ".mp3");
+            //downloadFileFromURL.downloadFile(recordingFileandURL + recordingTitle + ".mp3", recordingTitle + ".mp3", c);
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return b;
     }
 
 
