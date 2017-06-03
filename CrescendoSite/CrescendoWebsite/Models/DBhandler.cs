@@ -22,9 +22,9 @@ namespace CrescendoWebsite.Models
             client = QuickBase.Login("Jpriemo1234@gmail.com", "Crescendo1", "johnpriem.quickbase.com");
             application = client.Connect("bms24ys95", "duzpt2fcvsybbgkrkup4bjurh8b");
             table = application.GetTable(GetTableID("Users"));
-            setCurUserID();
-            GrabPitch(0);
-            GrabPitches();
+            //setCurUserID();
+            //GrabPitch(0);
+            //GrabPitches();
             //GetRecording(0,0);
             //GrabRecordings(0);
             /*Pulls all users and prints their information
@@ -36,6 +36,19 @@ namespace CrescendoWebsite.Models
             //CreateUser("Jack", "Priem");
         }
 
+        public int GetUserIDByUserName(String userName)
+        {
+            int uID = -1;
+            table = application.GetTable(GetTableID("Users"));
+            table.Query();
+            IQRecord tempUser = table.Records.Where(x => x[1] == userName).SingleOrDefault();
+            if(tempUser != null)
+            {
+                Int32.TryParse(tempUser[0], out uID);
+            }
+            return uID;
+        }
+
         private string GetTableID(string TableName)
         {
             return tableNames.Where(x => x.Key == TableName).Select(x => x.Value).SingleOrDefault();
@@ -43,6 +56,7 @@ namespace CrescendoWebsite.Models
 
         public bool CreateUser(String userName, String password)
         {
+            table = application.GetTable(GetTableID("Users"));
             //check the passwords before calling method
             table.Query();
             bool userCreated = false;
@@ -66,6 +80,7 @@ namespace CrescendoWebsite.Models
 
         public bool SignIn(String userName, String password)
         {
+            table = application.GetTable(GetTableID("Users"));
             table.Query();
             bool userLoggedIn = false;
             IQRecord prevUser = table.Records.Where(x => x[1] == userName).SingleOrDefault();
@@ -123,8 +138,8 @@ namespace CrescendoWebsite.Models
             table = application.GetTable(GetTableID("Recordings"));
             table.Query();
             IQRecord recording = table.Records.Where(x => x[1] == userID.ToString() && x[0] == RecordingID.ToString()).SingleOrDefault();
-            //recording.DownloadFile("Recording", HttpContext.Current.Server.MapPath("/DataHolding/"), 1);
-            //FileStream fs = File.Create(HttpContext.Current.Server.MapPath("/DataHolding/") + recording[3]);
+            recording.DownloadFile("Recording", HttpContext.Current.Server.MapPath("/DataHolding/"), 1);
+            FileStream fs = File.Create(HttpContext.Current.Server.MapPath("/DataHolding/") + recording[3]);
             int id;
             if (Int32.TryParse(recording[0], out id))
             {

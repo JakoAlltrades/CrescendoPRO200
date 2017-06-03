@@ -65,6 +65,8 @@ namespace CrescendoWebsite.Controllers
             ViewResult vr = View("Index");
             if (u != null)
             {
+               int userid =  db.GetUserIDByUserName(u.UserName);
+                ViewBag.Recordings = db.GrabRecordings(userid);
                 vr = View(u);
             }
             return vr;
