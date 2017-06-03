@@ -341,8 +341,9 @@ public class DBHandler {
             recordingFileandURL = recordingFileandURL.replace(recordingTitle + ".mp3", "");
             recordingFileandURL = recordingFileandURL.replace("<url>", "");
             recordingFileandURL = recordingFileandURL.replace("</url>", "");
-            DownloadFileFromURL downloadFileFromURL = new DownloadFileFromURL();
-            b = fileAttachment.getContents();
+            b = QBClient.getFile(recordingFileandURL);
+            //DownloadFileFromURL downloadFileFromURL = new DownloadFileFromURL();
+            //b = fileAttachment.getContents();
             //downloadFileFromURL.execute(recordingFileandURL + recordingTitle + ".mp3");
             //downloadFileFromURL.downloadFile(recordingFileandURL + recordingTitle + ".mp3", recordingTitle + ".mp3", c);
         } catch (Exception e) {
