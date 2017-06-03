@@ -192,6 +192,7 @@
     </Compile>
     <Compile Include="Models\DBhandler.cs" />
     <Compile Include="Models\GuitarChord.cs" />
+    <Compile Include="Models\Pitch.cs" />
     <Compile Include="Models\Recording.cs" />
     <Compile Include="Models\Metronome.cs" />
     <Compile Include="Models\User.cs" />
