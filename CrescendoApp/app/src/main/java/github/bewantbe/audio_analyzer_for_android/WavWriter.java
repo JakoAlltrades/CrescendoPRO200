@@ -16,6 +16,7 @@
 package github.bewantbe.audio_analyzer_for_android;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.os.Environment;
 import android.os.StatFs;
 import android.util.Log;
@@ -30,23 +31,48 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import crescendo.com.crescendoapp.DBHandler;
+
 class WavWriter {
   private static final String TAG = "WavWriter";
   private File outPath;
   private OutputStream out;
   private byte[] header = new byte[44];
   final String relativeDir = "/Recorder";
-
+  DBHandler dbHandler;
   private int channels = 1;
   private byte RECORDER_BPP = 16;  // bits per sample
   private int byteRate;            // Average bytes per second
   private int totalDataLen  = 0;   // (file size) - 8
   private int totalAudioLen = 0;   // bytes of audio raw data
   private int framesWritten = 0;
+  int userid = -1;
+  Context context = null;
+
+  public int getUserID()
+  {
+    return userid;
+  }
+
+  public Context getContext()
+  {
+    return context;
+  }
+
+  public void setContext(Context c)
+  {
+    context = c;
+    dbHandler = new DBHandler(context);
+  }
+
+  public void setUserID(int value)
+  {
+    userid = value;
+  }
 
   WavWriter(int sampleRate) {
     byteRate = sampleRate*RECORDER_BPP/8*channels;
-    
+    this.userid = userid;
     header[0] = 'R';  // RIFF/WAVE header
     header[1] = 'I';
     header[2] = 'F';
@@ -123,10 +149,10 @@ class WavWriter {
     DateFormat df = new SimpleDateFormat("yyyy-MM-dd_HH'h'mm'm'ss.SSS's'", Locale.US);
     String nowStr = df.format(new Date());
     outPath = new File(path, "rec" + nowStr + ".wav");
-
     try {
       out = new FileOutputStream(outPath);
       out.write(header, 0, 44);
+        dbHandler.CreateRecording(userid, "rec" + nowStr + ".wav", path);
       // http://developer.android.com/reference/android/os/Environment.html#getExternalStoragePublicDirectory%28java.lang.String%29
     } catch (IOException e) {
       Log.w(TAG, "start(): Error writing " + outPath, e);

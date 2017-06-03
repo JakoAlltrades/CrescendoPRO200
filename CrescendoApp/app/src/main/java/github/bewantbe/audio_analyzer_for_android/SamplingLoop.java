@@ -43,13 +43,26 @@ class SamplingLoop extends Thread {
 
     private final AnalyzerActivity activity;
 
+    private int userid = -1;
+
     volatile double wavSecRemain;
     volatile double wavSec = 0;
+
+    public int getUserID()
+    {
+        return userid;
+    }
+
+    public void setUserID(int value)
+    {
+        userid = value;
+    }
+
 
     SamplingLoop(AnalyzerActivity _activity, AnalyzerParameters _analyzerParam) {
         activity = _activity;
         analyzerParam = _analyzerParam;
-
+        this.userid = userid;
         isPaused1 = ((SelectorText) activity.findViewById(R.id.run)).getValue().equals("stop");
         // Signal sources for testing
         double fq0 = Double.parseDouble(activity.getString(R.string.test_signal_1_freq1));
@@ -209,6 +222,8 @@ class SamplingLoop extends Thread {
 //      FPSCounter fpsCounter = new FPSCounter("SamplingLoop::run()");
 
         WavWriter wavWriter = new WavWriter(analyzerParam.sampleRate);
+        wavWriter.setContext(activity);
+        wavWriter.setUserID(userid);
         boolean bSaveWavLoop = activity.bSaveWav;  // change of bSaveWav during loop will only affect next enter.
         if (bSaveWavLoop) {
             wavWriter.start();
