@@ -1,21 +1,26 @@
 package crescendo.com.crescendoapp;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.io.File;
+
 public class MainActivity extends AppCompatActivity {
 
     DBHandler dbHandler;
+    File fileDir;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sign_in);
         dbHandler = new DBHandler(this.getBaseContext());
+        fileDir = this.getExternalFilesDir("");
+        //UploadRecord();
     }
     public void userHome(View view)
     {
@@ -40,6 +45,12 @@ public class MainActivity extends AppCompatActivity {
         checkDatabase(username,password);
          */
     }
+
+    public void UploadRecord()
+    {
+        dbHandler.CreateRecording(0, "Demo.mp3", fileDir);
+    }
+
     public void signUp(View view)
     {
         Intent myIntent = new Intent(MainActivity.this, Sign_Up.class);

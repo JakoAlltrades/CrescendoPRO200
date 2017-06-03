@@ -7,7 +7,7 @@
 /build
 /captures
 .externalNativeBuild
-/.vs/config
+/CrescendoSite/.vs/config
 applicationhost.config
 /CrescendoSite/CrescendoWebsite/CrescendoWebsite/obj/
 /CrescendoApp/build/intermediates/dex-cache/cache.xml

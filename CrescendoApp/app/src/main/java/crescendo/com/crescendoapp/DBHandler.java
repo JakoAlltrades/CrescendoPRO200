@@ -2,8 +2,11 @@ package crescendo.com.crescendoapp;
 
 import android.content.Context;
 
+import com.intuit.quickbase.util.FileAttachment;
 import com.intuit.quickbase.util.QuickBaseClient;
 
+import java.io.File;
+import java.io.RandomAccessFile;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -27,10 +30,9 @@ public class DBHandler {
         tableNames.put("Recordings", "bms24ytgg");
         tableNames.put("Pitches", "bmtmx5ca8");
         //GrabPitch(8);
-        CreateRecording(0, "Demo.mp3");
         //GrabPitches();
         //GrabRecords(0);
-        //GrabRecord(0,0);
+        GrabRecord(0,0);
         //setCurID("Users");
         //QBClient.setAppToken("duzpt2fcvsybbgkrkup4bjurh8b");
         //AddUserToDB();
@@ -106,17 +108,22 @@ public class DBHandler {
         return pitches;
     }
 
-    public boolean CreateRecording(int userID, String fileName)
+    public boolean CreateRecording(int userID, String fileName, File fileDir)
     {
         setCurID("Recordings");
         boolean recordingCreated = false;
-
         HashMap record = new HashMap<>();
-        record.put("RecordingID",curID + "");
-        record.put("UserID", userID + "");
-        record.put("RecordingTitle", fileName);
-        record.put("Recording", fileName);
         try{
+            File fuck = new File(fileDir, fileName);
+            byte[] file;
+            RandomAccessFile f = new RandomAccessFile(fuck, "r");//possibly reading phone directory
+            file = new byte[(int) f.length()];
+            f.readFully(file);
+            FileAttachment fileAttachment = new FileAttachment(fuck.getAbsolutePath(), file);
+            record.put("RecordingID",curID + "");
+            record.put("UserID", userID + "");
+            record.put("RecordingTitle", fileName);
+            record.put("Recording",fileAttachment);
             QBClient.addRecord(tableNames.get("Recordings"), record);
             recordingCreated = true;
         }
@@ -313,7 +320,8 @@ public class DBHandler {
         return recordings;
     }
 
-    public void GrabRecord(int UserID, int recordID) {
+    public byte[] GrabRecord(int UserID, int recordID) {
+        byte[] b= null;
         try {
             Vector record = QBClient.doQuery(tableNames.get("Recordings"),"{'7'.EX." + recordID +"}AND{'0'.EX."+UserID+"}" , "a", "", "");
             Map<String, String> map = (Map) record.get(0);
@@ -329,15 +337,19 @@ public class DBHandler {
                     recordingTitle = entry.getValue();
                 }
             }
+            FileAttachment fileAttachment = new FileAttachment(recordingTitle, recordingFileandURL);
             recordingFileandURL = recordingFileandURL.replace(recordingTitle + ".mp3", "");
             recordingFileandURL = recordingFileandURL.replace("<url>", "");
             recordingFileandURL = recordingFileandURL.replace("</url>", "");
-            DownloadFileFromURL downloadFileFromURL = new DownloadFileFromURL();
-            downloadFileFromURL.execute(recordingFileandURL + recordingTitle + ".mp3");
-            downloadFileFromURL.downloadFile(recordingFileandURL + recordingTitle + ".mp3", recordingTitle + ".mp3", c);
+            b = QBClient.getFile(recordingFileandURL);
+            //DownloadFileFromURL downloadFileFromURL = new DownloadFileFromURL();
+            //b = fileAttachment.getContents();
+            //downloadFileFromURL.execute(recordingFileandURL + recordingTitle + ".mp3");
+            //downloadFileFromURL.downloadFile(recordingFileandURL + recordingTitle + ".mp3", recordingTitle + ".mp3", c);
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return b;
     }
 
 
