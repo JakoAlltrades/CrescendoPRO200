@@ -32,7 +32,7 @@ public class DBHandler {
         //GrabPitch(8);
         //GrabPitches();
         //GrabRecords(0);
-        GrabRecord(0);
+        GrabRecord(7);
         //setCurID("Users");
         //QBClient.setAppToken("duzpt2fcvsybbgkrkup4bjurh8b");
         //AddUserToDB();

@@ -36,6 +36,19 @@ namespace CrescendoWebsite.Models
             //CreateUser("Jack", "Priem");
         }
 
+        public int GetUserIDByUserName(String userName)
+        {
+            int uID = -1;
+            table = application.GetTable(GetTableID("Users"));
+            table.Query();
+            IQRecord tempUser = table.Records.Where(x => x[1] == userName).SingleOrDefault();
+            if(tempUser != null)
+            {
+                Int32.TryParse(tempUser[0], out uID);
+            }
+            return uID;
+        }
+
         private string GetTableID(string TableName)
         {
             return tableNames.Where(x => x.Key == TableName).Select(x => x.Value).SingleOrDefault();
@@ -125,8 +138,8 @@ namespace CrescendoWebsite.Models
             table = application.GetTable(GetTableID("Recordings"));
             table.Query();
             IQRecord recording = table.Records.Where(x => x[1] == userID.ToString() && x[0] == RecordingID.ToString()).SingleOrDefault();
-            //recording.DownloadFile("Recording", HttpContext.Current.Server.MapPath("/DataHolding/"), 1);
-            //FileStream fs = File.Create(HttpContext.Current.Server.MapPath("/DataHolding/") + recording[3]);
+            recording.DownloadFile("Recording", HttpContext.Current.Server.MapPath("/DataHolding/"), 1);
+            FileStream fs = File.Create(HttpContext.Current.Server.MapPath("/DataHolding/") + recording[3]);
             int id;
             if (Int32.TryParse(recording[0], out id))
             {
