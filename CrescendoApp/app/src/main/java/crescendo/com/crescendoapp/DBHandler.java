@@ -323,7 +323,7 @@ public class DBHandler {
     public byte[] GrabRecord(int recordID) {
         byte[] b= null;
         try {
-            Vector record = QBClient.doQuery(tableNames.get("Recordings"),"{'7'.EX."+recordID+"}" , "a", "", "");
+            Vector record = QBClient.doQuery(tableNames.get("Recordings"),"{'6'.EX."+recordID+"}" , "a", "", "");
             Map<String, String> map;
             String recordingFileandURL = null, recordingTitle = null;
             map = (Map)record.get(0);
