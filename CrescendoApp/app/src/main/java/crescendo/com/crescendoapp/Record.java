@@ -8,12 +8,12 @@ import android.os.Environment;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Random;
 
@@ -33,11 +33,16 @@ public class Record  extends AppCompatActivity {
     String RandomAudioFileName = "ABCDEFGHIJKLMNOP";
     public static final int RequestPermissionCode = 1;
     MediaPlayer mediaPlayer ;
+    File fileDir;
+    DBHandler dbhandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.record);
+        fileDir = this.getExternalFilesDir("");
+        dbhandler = new DBHandler(this);
+        UploadRecord();
         //Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
 //        /setSupportActionBar(myToolbar);
         //doStuff();
@@ -61,6 +66,13 @@ public class Record  extends AppCompatActivity {
 
         }
     }
+
+    public void UploadRecord()
+    {
+            dbhandler.CreateRecording(0, "Demo.mp3", fileDir);
+    }
+
+
     public void doStuff()
     {
        // buttonStart = (Button) findViewById(R.id.start);

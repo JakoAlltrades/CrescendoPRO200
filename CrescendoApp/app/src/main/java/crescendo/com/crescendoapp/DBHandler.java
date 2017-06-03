@@ -2,8 +2,10 @@ package crescendo.com.crescendoapp;
 
 import android.content.Context;
 
+import com.intuit.quickbase.util.FileAttachment;
 import com.intuit.quickbase.util.QuickBaseClient;
 
+import java.io.File;
 import java.io.RandomAccessFile;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,7 +30,6 @@ public class DBHandler {
         tableNames.put("Recordings", "bms24ytgg");
         tableNames.put("Pitches", "bmtmx5ca8");
         //GrabPitch(8);
-        CreateRecording(0, "Demo.mp3");
         //GrabPitches();
         //GrabRecords(0);
         //GrabRecord(0,0);
@@ -107,20 +108,22 @@ public class DBHandler {
         return pitches;
     }
 
-    public boolean CreateRecording(int userID, String fileName)
+    public boolean CreateRecording(int userID, String fileName, File fileDir)
     {
         setCurID("Recordings");
         boolean recordingCreated = false;
         HashMap record = new HashMap<>();
         try{
+            File fuck = new File(fileDir, fileName);
             byte[] file;
-            RandomAccessFile f = new RandomAccessFile("C:\\Users\\jprirm\\Documents\\GitHub\\CrescendoPRO200\\CrescendoApp\\DataHold\\" + fileName, "r");
+            RandomAccessFile f = new RandomAccessFile(fuck, "r");//possibly reading phone directory
             file = new byte[(int) f.length()];
             f.readFully(file);
+            FileAttachment fileAttachment = new FileAttachment(fuck.getAbsolutePath(), file);
             record.put("RecordingID",curID + "");
             record.put("UserID", userID + "");
             record.put("RecordingTitle", fileName);
-            record.put("Recording", file);
+            record.put("Recording",fileAttachment);
             QBClient.addRecord(tableNames.get("Recordings"), record);
             recordingCreated = true;
         }
