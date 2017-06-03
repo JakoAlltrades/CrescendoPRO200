@@ -32,7 +32,7 @@ public class DBHandler {
         //GrabPitch(8);
         //GrabPitches();
         //GrabRecords(0);
-        GrabRecord(0,0);
+        GrabRecord(0);
         //setCurID("Users");
         //QBClient.setAppToken("duzpt2fcvsybbgkrkup4bjurh8b");
         //AddUserToDB();
@@ -290,7 +290,7 @@ public class DBHandler {
     {
         ArrayList<Recording> recordings = null;
         try{
-            Vector record = QBClient.doQuery(tableNames.get("Recordings"), "{0.EX." + userID + "}", "a", "", "");
+            Vector record = QBClient.doQuery(tableNames.get("Recordings"), "{7.EX." + userID + "}", "a", "", "");
             ArrayList<String> recordTitles = new ArrayList<>();
             ArrayList<String> recordIDs = new ArrayList<>();
             for(int j = 0; j < record.size(); j++)
@@ -320,20 +320,18 @@ public class DBHandler {
         return recordings;
     }
 
-    public byte[] GrabRecord(int UserID, int recordID) {
+    public byte[] GrabRecord(int recordID) {
         byte[] b= null;
         try {
-            Vector record = QBClient.doQuery(tableNames.get("Recordings"),"{'7'.EX." + recordID +"}AND{'0'.EX."+UserID+"}" , "a", "", "");
-            Map<String, String> map = (Map) record.get(0);
+            Vector record = QBClient.doQuery(tableNames.get("Recordings"),"{'7'.EX."+recordID+"}" , "a", "", "");
+            Map<String, String> map;
             String recordingFileandURL = null, recordingTitle = null;
-            for(Map.Entry<String,String> entry: map.entrySet())
-            {
-                if(entry.getKey().equals("Recording"))
-                {
-                    recordingFileandURL =  entry.getValue();
+            map = (Map)record.get(0);
+            for (Map.Entry<String, String> entry : map.entrySet()) {
+                if (entry.getKey().equals("Recording")) {
+                    recordingFileandURL = entry.getValue();
                 }
-                if(entry.getKey().equals("RecordingTitle"))
-                {
+                if (entry.getKey().equals("RecordingTitle")) {
                     recordingTitle = entry.getValue();
                 }
             }
@@ -351,7 +349,4 @@ public class DBHandler {
         }
         return b;
     }
-
-
-
 }

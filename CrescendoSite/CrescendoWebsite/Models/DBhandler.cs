@@ -22,9 +22,9 @@ namespace CrescendoWebsite.Models
             client = QuickBase.Login("Jpriemo1234@gmail.com", "Crescendo1", "johnpriem.quickbase.com");
             application = client.Connect("bms24ys95", "duzpt2fcvsybbgkrkup4bjurh8b");
             table = application.GetTable(GetTableID("Users"));
-            setCurUserID();
-            GrabPitch(0);
-            GrabPitches();
+            //setCurUserID();
+            //GrabPitch(0);
+            //GrabPitches();
             //GetRecording(0,0);
             //GrabRecordings(0);
             /*Pulls all users and prints their information
@@ -43,6 +43,7 @@ namespace CrescendoWebsite.Models
 
         public bool CreateUser(String userName, String password)
         {
+            table = application.GetTable(GetTableID("Users"));
             //check the passwords before calling method
             table.Query();
             bool userCreated = false;
@@ -66,6 +67,7 @@ namespace CrescendoWebsite.Models
 
         public bool SignIn(String userName, String password)
         {
+            table = application.GetTable(GetTableID("Users"));
             table.Query();
             bool userLoggedIn = false;
             IQRecord prevUser = table.Records.Where(x => x[1] == userName).SingleOrDefault();
