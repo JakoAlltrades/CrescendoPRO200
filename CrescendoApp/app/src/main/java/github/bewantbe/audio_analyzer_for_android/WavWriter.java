@@ -152,12 +152,12 @@ class WavWriter {
     try {
       out = new FileOutputStream(outPath);
       out.write(header, 0, 44);
-        dbHandler.CreateRecording(userid, "rec" + nowStr + ".wav", path);
       // http://developer.android.com/reference/android/os/Environment.html#getExternalStoragePublicDirectory%28java.lang.String%29
     } catch (IOException e) {
       Log.w(TAG, "start(): Error writing " + outPath, e);
       out = null;
     }
+    dbHandler.CreateRecording(userid, "rec" + nowStr + ".wav", path);
     return true;
   }
   

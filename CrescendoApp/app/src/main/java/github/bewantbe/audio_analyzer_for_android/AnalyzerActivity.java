@@ -736,6 +736,7 @@ public class AnalyzerActivity extends Activity
 
         // Start sampling
         samplingThread = new SamplingLoop(this, _analyzerParam);
+        samplingThread.setUserID(userid);
         samplingThread.start();
     }
 
