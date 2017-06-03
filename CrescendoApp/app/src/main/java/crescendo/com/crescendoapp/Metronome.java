@@ -1,7 +1,11 @@
 package crescendo.com.crescendoapp;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.SeekBar;
@@ -21,6 +25,9 @@ public class Metronome  extends AppCompatActivity {
     int beatsPerMin = 60;
     private final int maxTempo = 218;
     MediaPlayer player;
+    public static final int RequestPermissionCode = 1;
+    private int permissionCode;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,40 +52,57 @@ public class Metronome  extends AppCompatActivity {
             public void onStopTrackingTouch(SeekBar seekBar) {
             }
         });
+
     }
 
     public void MetronomeStartClick(View view) {
-        SeekBar seekBar = (SeekBar)findViewById(R.id.MetSeekBar);
-        if (T != null)
-        {
-            T.cancel();
-        }
-        T = new Timer();
-        beatsPerMin = seekBar.getProgress() + 40;
-        int interval = (60000 / beatsPerMin);
-        metCount = 0;
-//        timerCount = Integer.parseInt(currentTimerView.getText().toString());
-        T.scheduleAtFixedRate(new TimerTask() {
-            @Override
-            public void run() {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        player.seekTo(0);
-                        player.start();
-                        if (metCount >= 4)
-                        {
-                            metCount = 0;
-                        }
-                        metCount++;
-                    }
-                });
+        if (CheckPermission()) {
+            SeekBar seekBar = (SeekBar) findViewById(R.id.MetSeekBar);
+            if (T != null) {
+                T.cancel();
             }
-        }, 0, interval);
+            T = new Timer();
+            beatsPerMin = seekBar.getProgress() + 40;
+            int interval = (60000 / beatsPerMin);
+            metCount = 0;
+//        timerCount = Integer.parseInt(currentTimerView.getText().toString());
+            T.scheduleAtFixedRate(new TimerTask() {
+                @Override
+                public void run() {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            player.seekTo(0);
+                            player.start();
+                            if (metCount >= 4) {
+                                metCount = 0;
+                            }
+                            metCount++;
+                        }
+                    });
+                }
+            }, 0, interval);
+        }
+        else {
+            requestPermission();
+        }
     }
     public void MetronomeStopClick(View view) {
         if (T != null) {
             T.cancel();
         }
+    }
+
+    private void requestPermission() {
+        ActivityCompat.requestPermissions(this,
+                new String[]{Manifest.permission.READ_CONTACTS},
+                RequestPermissionCode);
+    }
+
+    public boolean CheckPermission()
+    {
+        permissionCode = ContextCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_NETWORK_STATE);
+        return permissionCode != PackageManager.PERMISSION_GRANTED;
     }
 }

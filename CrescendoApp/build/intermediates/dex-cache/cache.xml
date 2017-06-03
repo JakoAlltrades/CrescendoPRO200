@@ -10,5 +10,32 @@
         sha1="b90b6ac57cf27a2858eaa490d02ba7945d18ca7b">
         <dex dex="C:\Users\chance\AndroidStudioProjects\FinalCrescendo\Crescendo\CrescendoPRO200\CrescendoApp\app\build\intermediates\pre-dexed\debug\org.apache.commons.io_895e22a462c8d8a49041651025effa4452405bbf.jar" />
     </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\chance\AndroidStudioProjects\FinalCrescendo\finalReclone\CrescendoPRO200\CrescendoApp\app\libs\commons-codec-1.10\commons-codec-1.10.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="4b95f4897fa13f2cd904aee711aeafc0c5295cd8">
+        <dex dex="C:\Users\chance\AndroidStudioProjects\FinalCrescendo\finalReclone\CrescendoPRO200\CrescendoApp\app\build\intermediates\pre-dexed\debug\commons-codec-1.10_c7312e2d3231a32471ff1b1229c7f2123475fa64.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\chance\AndroidStudioProjects\FinalCrescendo\finalReclone\CrescendoPRO200\CrescendoApp\app\libs\org.apache.commons.io.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="b90b6ac57cf27a2858eaa490d02ba7945d18ca7b">
+        <dex dex="C:\Users\chance\AndroidStudioProjects\FinalCrescendo\finalReclone\CrescendoPRO200\CrescendoApp\app\build\intermediates\pre-dexed\debug\org.apache.commons.io_cbe8d9be3b47764772c765a163e170f7cfd002a7.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\chance\AndroidStudioProjects\FinalCrescendo\finalReclone\CrescendoPRO200\CrescendoApp\app\libs\org.apache.commons.httpclient.jar\org.apache.commons.httpclient.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="962616364835eaa661b7b5eaa0c5ead586d2c4fa">
+        <dex dex="C:\Users\chance\AndroidStudioProjects\FinalCrescendo\finalReclone\CrescendoPRO200\CrescendoApp\app\build\intermediates\pre-dexed\debug\org.apache.commons.httpclient_d80824c577d3dd80f0f91048f2b8db09cc25dab0.jar" />
+    </item>
 
 </items>
