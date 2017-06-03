@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sign_in);
         dbHandler = new DBHandler(this.getBaseContext());
-        fileDir = this.getExternalFilesDir("");
+        //fileDir = this.getExternalFilesDir("");
         //UploadRecord();
     }
     public void userHome(View view)
@@ -46,10 +46,10 @@ public class MainActivity extends AppCompatActivity {
          */
     }
 
-    public void UploadRecord()
-    {
-        dbHandler.CreateRecording(0, "Demo.mp3", fileDir);
-    }
+//    public void UploadRecord()
+//    {
+//        dbHandler.CreateRecording(0, "Demo.mp3", fileDir);
+//    }
 
     public void signUp(View view)
     {
