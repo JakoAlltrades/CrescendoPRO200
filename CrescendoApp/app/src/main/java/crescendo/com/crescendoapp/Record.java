@@ -72,7 +72,6 @@ public class Record  extends AppCompatActivity {
             dbhandler.CreateRecording(0, "Demo.mp3", fileDir);
     }
 
-
     public void doStuff()
     {
        // buttonStart = (Button) findViewById(R.id.start);
