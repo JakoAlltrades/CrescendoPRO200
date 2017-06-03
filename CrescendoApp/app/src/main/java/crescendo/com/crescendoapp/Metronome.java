@@ -1,6 +1,7 @@
 package crescendo.com.crescendoapp;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.pm.PackageManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -21,18 +22,19 @@ import java.util.TimerTask;
 public class Metronome  extends AppCompatActivity {
 
     private Timer T;
-    int metCount;
     int beatsPerMin = 60;
     private final int maxTempo = 218;
-    MediaPlayer player;
+    MediaPlayer player = new MediaPlayer();
     public static final int RequestPermissionCode = 1;
     private int permissionCode;
+    Activity context = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.metronome);
         player = MediaPlayer.create(this, R.raw.blockclick);
+
 
         SeekBar seekBar = (SeekBar)findViewById(R.id.MetSeekBar);
         seekBar.setMax(maxTempo - 40);
@@ -52,7 +54,6 @@ public class Metronome  extends AppCompatActivity {
             public void onStopTrackingTouch(SeekBar seekBar) {
             }
         });
-
     }
 
     public void MetronomeStartClick(View view) {
@@ -64,7 +65,6 @@ public class Metronome  extends AppCompatActivity {
             T = new Timer();
             beatsPerMin = seekBar.getProgress() + 40;
             int interval = (60000 / beatsPerMin);
-            metCount = 0;
 //        timerCount = Integer.parseInt(currentTimerView.getText().toString());
             T.scheduleAtFixedRate(new TimerTask() {
                 @Override
@@ -72,16 +72,19 @@ public class Metronome  extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            player.seekTo(0);
-                            player.start();
-                            if (metCount >= 4) {
-                                metCount = 0;
+//                            player.seekTo(0);
+//                            player.start();
+                            if (player != null)
+                            {
+                                player.stop();
+                                player.release();
                             }
-                            metCount++;
+                            player = MediaPlayer.create(getApplicationContext(), R.raw.blockclick);
+                            player.start();
                         }
                     });
                 }
-            }, 0, interval);
+            }, 1000, interval);
         }
         else {
             requestPermission();
@@ -95,7 +98,7 @@ public class Metronome  extends AppCompatActivity {
 
     private void requestPermission() {
         ActivityCompat.requestPermissions(this,
-                new String[]{Manifest.permission.READ_CONTACTS},
+                new String[]{Manifest.permission.ACCESS_NETWORK_STATE},
                 RequestPermissionCode);
     }
 
@@ -103,6 +106,6 @@ public class Metronome  extends AppCompatActivity {
     {
         permissionCode = ContextCompat.checkSelfPermission(this,
                 Manifest.permission.ACCESS_NETWORK_STATE);
-        return permissionCode != PackageManager.PERMISSION_GRANTED;
+        return permissionCode == PackageManager.PERMISSION_GRANTED;
     }
 }
