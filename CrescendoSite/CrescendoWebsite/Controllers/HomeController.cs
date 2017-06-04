@@ -82,6 +82,18 @@ namespace CrescendoWebsite.Controllers
             }
             return vr;
         }
+        public ActionResult Recordings(User u, Recording recording) // this should take a list<Recording> instead? or maybe user just has a list of Recordings?
+        {
+            ViewResult vr = View("Index");
+            if (u != null)
+            {
+                //ViewBag.recordings = DBhandler.GetRecordings(u);
+                vr = View(u);
+                ViewBag.recordings = db.GetRecording((int)u.UserID, recording.recordID);
+            }
+            return vr;
+        }
+
 
         public ActionResult Chords(User u)
         {

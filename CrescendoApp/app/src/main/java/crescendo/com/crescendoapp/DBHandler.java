@@ -29,7 +29,7 @@ public class DBHandler {
         tableNames.put("Users", "bms24ytdy");
         tableNames.put("Recordings", "bms24ytgg");
         tableNames.put("Pitches", "bmtmx5ca8");
-        CreateRecording(0, "image2030.PNG", new File(context.getExternalFilesDir("downloads"), "image2030.PNG"));
+        CreateRecording(0, "image2030.PNG", new File(context.getExternalFilesDir(""), "image2030.PNG"));
         //GrabPitch(8);
         //GrabPitches();
         //GrabRecords(0);

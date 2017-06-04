@@ -1,4 +1,6 @@
-﻿
+﻿@using CrescendoWebsite.Models
+@model User
+
 @{
     ViewBag.title = "UserData";
     Layout = "~/Views/Shared/_UserLayout.cshtml";
@@ -14,11 +16,15 @@
 <body>
     <h3>Here are some of your Recordings</h3>
     <div>
-        @foreach(var item in ViewBag.Recordings)
+        @foreach (var item in ViewBag.Recordings)
         {
-          <h1>@item.RecordingName</h1>
+            
+        
+            Recording rec = item;
+            String name = @item.RecordingName;
+            <h1>@Html.ActionLink(name, "Recordings", Model, rec)</h1>
+            
         }
     </div>
 </body>
 </html>
-
