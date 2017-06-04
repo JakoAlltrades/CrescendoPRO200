@@ -6,6 +6,7 @@
 @{
     ViewBag.title = "Recordings";
     Layout = "~/Views/Shared/_UserLayout.cshtml";
+    //Recording recording = null;
 }
 
 <!DOCTYPE html>
@@ -18,6 +19,8 @@
 <body>
     <audio src=~/DataHolding/Satisfaction.mp3 controls/>
     <h1>From here you can view all of your recordings</h1>
+    @{ Recording recording = null; }
+    @Html.ActionLink("recording", "Recording", recording)
     <div>
         @*@foreach (Recording r in ViewBag.recordings)
         {

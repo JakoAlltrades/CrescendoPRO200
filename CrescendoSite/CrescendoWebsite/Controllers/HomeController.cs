@@ -94,5 +94,7 @@ namespace CrescendoWebsite.Controllers
             }
             return vr;
         }
+
+        public ActionResult Record
     }
 }

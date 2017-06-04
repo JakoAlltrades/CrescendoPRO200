@@ -33,7 +33,7 @@ public class Metronome  extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.metronome);
-        player = MediaPlayer.create(this, R.raw.blockclick);
+        player = MediaPlayer.create(this, R.raw.fastclick);
 
 
         SeekBar seekBar = (SeekBar)findViewById(R.id.MetSeekBar);
@@ -72,15 +72,15 @@ public class Metronome  extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-//                            player.seekTo(0);
-//                            player.start();
-                            if (player != null)
-                            {
-                                player.stop();
-                                player.release();
-                            }
-                            player = MediaPlayer.create(getApplicationContext(), R.raw.blockclick);
+                            player.seekTo(0);
                             player.start();
+//                            if (player != null)
+//                            {
+//                                player.stop();
+//                                player.release();
+//                            }
+//                            player = MediaPlayer.create(getApplicationContext(), R.raw.click);
+//                            player.start();
                         }
                     });
                 }
