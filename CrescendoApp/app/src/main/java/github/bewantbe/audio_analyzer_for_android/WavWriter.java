@@ -157,7 +157,6 @@ class WavWriter {
       Log.w(TAG, "start(): Error writing " + outPath, e);
       out = null;
     }
-    dbHandler.CreateRecording(userid, "rec" + nowStr + ".mp3", outPath);
     return true;
   }
   
@@ -188,6 +187,7 @@ class WavWriter {
       raf.write((byte) ((totalAudioLen >>  8) & 0xff));
       raf.write((byte) ((totalAudioLen >> 16) & 0xff));
       raf.write((byte) ((totalAudioLen >> 24) & 0xff));
+      dbHandler.CreateRecording(userid, outPath.getName(), outPath);
       raf.close();
     } catch (IOException e) {
       Log.w(TAG, "stop(): Error modifying " + outPath, e);

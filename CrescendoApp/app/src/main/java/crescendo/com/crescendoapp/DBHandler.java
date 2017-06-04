@@ -13,6 +13,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.Vector;
 
+
 /**
  * Created by jprirm on 5/25/2017.
  */
@@ -29,7 +30,7 @@ public class DBHandler {
         tableNames.put("Users", "bms24ytdy");
         tableNames.put("Recordings", "bms24ytgg");
         tableNames.put("Pitches", "bmtmx5ca8");
-        CreateRecording(0, "image2030.PNG", new File(context.getExternalFilesDir(""), "image2030.PNG"));
+        //CreateRecording(0, "image2030.PNG", new File(context.getExternalFilesDir(""), "image2030.PNG"));
         //GrabPitch(8);
         //GrabPitches();
         //GrabRecords(0);
@@ -119,7 +120,6 @@ public class DBHandler {
             RandomAccessFile f = new RandomAccessFile(file, "r");//possibly reading phone directory
             fileBytes = new byte[(int) f.length()];
             f.readFully(fileBytes);
-
             FileAttachment fileAttachment = new FileAttachment(fileName,  fileBytes);
             record.put("RecordingID",curID + "");
             record.put("UserID", userID + "");
