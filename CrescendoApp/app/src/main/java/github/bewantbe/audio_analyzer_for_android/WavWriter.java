@@ -148,7 +148,7 @@ class WavWriter {
     }
     DateFormat df = new SimpleDateFormat("yyyy-MM-dd_HH'h'mm'm'ss.SSS's'", Locale.US);
     String nowStr = df.format(new Date());
-    outPath = new File(path, "rec" + nowStr + ".wav");
+    outPath = new File(path, "rec" + nowStr + ".mp3");
     try {
       out = new FileOutputStream(outPath);
       out.write(header, 0, 44);
@@ -157,7 +157,7 @@ class WavWriter {
       Log.w(TAG, "start(): Error writing " + outPath, e);
       out = null;
     }
-    dbHandler.CreateRecording(userid, "rec" + nowStr + ".wav", path);
+    dbHandler.CreateRecording(userid, "rec" + nowStr + ".mp3", outPath);
     return true;
   }
   

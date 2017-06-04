@@ -29,6 +29,7 @@ public class DBHandler {
         tableNames.put("Users", "bms24ytdy");
         tableNames.put("Recordings", "bms24ytgg");
         tableNames.put("Pitches", "bmtmx5ca8");
+        CreateRecording(0, "image2030.PNG", new File(context.getExternalFilesDir("downloads"), "image2030.PNG"));
         //GrabPitch(8);
         //GrabPitches();
         //GrabRecords(0);
@@ -108,18 +109,18 @@ public class DBHandler {
         return pitches;
     }
 
-    public boolean CreateRecording(int userID, String fileName, File fileDir)
+    public boolean CreateRecording(int userID, String fileName, File file)
     {
         setCurID("Recordings");
         boolean recordingCreated = false;
         HashMap record = new HashMap<>();
         try{
-            File fuck = new File(fileDir, fileName);
-            byte[] file;
-            RandomAccessFile f = new RandomAccessFile(fuck, "r");//possibly reading phone directory
-            file = new byte[(int) f.length()];
-            f.readFully(file);
-            FileAttachment fileAttachment = new FileAttachment(fuck.getAbsolutePath(), file);
+            byte[] fileBytes;
+            RandomAccessFile f = new RandomAccessFile(file, "r");//possibly reading phone directory
+            fileBytes = new byte[(int) f.length()];
+            f.readFully(fileBytes);
+
+            FileAttachment fileAttachment = new FileAttachment(fileName,  fileBytes);
             record.put("RecordingID",curID + "");
             record.put("UserID", userID + "");
             record.put("RecordingTitle", fileName);
