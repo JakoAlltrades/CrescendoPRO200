@@ -7,7 +7,7 @@ namespace CrescendoWebsite.Models
 {
     public class User
     {
-        int? UserID { get; set; } 
+        public int? UserID { get; private set; } 
         public string UserName { get; set; }
         public string UserPassword { get; set; }
         public User()
